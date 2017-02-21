@@ -2,14 +2,13 @@
 .cache
 .idea
 dist
-slackceventsapi.egg-info
+slackeventsapi.egg-info
 *.log
 env
 .tox
 *.un~
 0/
 tests/.cache
-tests/__pycache__/
 .coverage
 .cache
 .DS_Store
