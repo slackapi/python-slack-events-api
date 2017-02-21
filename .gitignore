@@ -9,6 +9,7 @@ env
 *.un~
 0/
 tests/.cache
+tests/__pycache__
 .coverage
 .cache
 .DS_Store
