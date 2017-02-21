@@ -114,11 +114,11 @@ Go to your ngrok URL (e.g. https://myapp12.ngrok.com/) and auth your app.
 
 **🎉 Once your app has been authorized, you will begin receiving Slack events**
 
-**👋🏻  Interact with your bot:**
+**👋  Interact with your bot:**
 
 Invite your bot to a public channel, then say hi and your bot will respond
 
-    hi @bot 👋🏻
+    hi @bot 👋
 
 .. image:: https://cloud.githubusercontent.com/assets/32463/23047918/964defec-f467-11e6-87c3-9c7da11fc810.gif
 
