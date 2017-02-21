@@ -1,8 +1,11 @@
 Slack Events API adapter for Python
 ===================================
 
+.. image:: https://travis-ci.org/slackapi/python-slack-events-api.svg?branch=master
+    :target: https://travis-ci.org/slackapi/python-slack-events-api
 .. image:: https://codecov.io/gh/slackapi/python-slack-events-api/branch/master/graph/badge.svg
   :target: https://codecov.io/gh/slackapi/python-slack-events-api
+
 
 The Slack Events Adapter is a Python-based solution to receive and parse events
 from Slack’s Events API. This library uses an event emitter framework to allow
