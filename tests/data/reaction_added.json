@@ -1,0 +1,21 @@
+{
+  "token": "vFO9LARnLI7GflLR8tGqHgdy",
+  "team_id": "T0JFD6M53",
+  "api_app_id": "A28SCUES3",
+  "event": {
+    "type": "reaction_added",
+    "user": "U27FFLNF4",
+    "item": {
+      "type": "message",
+      "channel": "D2AQCJCQ2",
+      "ts": "1477958101.000004"
+    },
+    "reaction": "grinning",
+    "item_user": "U299ATJ2X",
+    "event_ts": "1477958240.864741"
+  },
+  "type": "event_callback",
+  "authed_users": [
+    "U299ATJ2X"
+  ]
+}
