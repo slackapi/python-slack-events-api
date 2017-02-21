@@ -1,5 +1,5 @@
 Example Slack events API bot
-===================================
+============================
 
 This example app shows how easy it is to implement the Slack Events API Adapter
 to receive Slack Events, extend it to handle the OAuth flow and respond to
@@ -125,13 +125,13 @@ Invite your bot to a public channel, then say hi and your bot will respond
 🤔  Support
 -------
 
-Need help? Join `dev4slack`_ and talk to us in `#slack-api`_.
+Need help? Join `Bot Developer Hangout`_ and talk to us in `#slack-api`_.
 
 You can also `create an Issue`_ right here on GitHub.
 
 .. _Events API: https://api.slack.com/events-api
 .. _create a Slack App: https://api.slack.com/apps/new
 .. _Event Subscriptions: https://api.slack.com/events-api#subscriptions
-.. _dev4slack: http://dev4slack.xoxco.com/
+.. _Bot Developer Hangout: http://dev4slack.xoxco.com/
 .. _#slack-api: https://dev4slack.slack.com/messages/slack-api/
 .. _create an Issue: https://github.com/slackapi/node-slack-events-api/issues/new

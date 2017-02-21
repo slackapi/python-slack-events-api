@@ -20,10 +20,6 @@ Before you can use the `Events API`_ you must
 `create a Slack App`_, and turn on
 `Event Subscriptions`_.
 
-.. _Events API: https://api.slack.com/events-api
-.. _create a Slack App: https://api.slack.com/apps/new
-.. _Event Subscriptions: https://api.slack.com/events-api#subscriptions
-
 💡  When you add the Request URL to your app's Event Subscription settings,
 Slack will send a request containing a `challenge` code to verify that your
 server is alive. This package handles that URL Verification event for you, so
@@ -106,13 +102,13 @@ SlackClient Web API client.
 🤔  Support
 -------
 
-Need help? Join `dev4slack`_ and talk to us in `#slack-api`_.
+Need help? Join `Bot Developer Hangout`_ and talk to us in `#slack-api`_.
 
 You can also `create an Issue`_ right here on GitHub.
 
 .. _Events API: https://api.slack.com/events-api
 .. _create a Slack App: https://api.slack.com/apps/new
 .. _Event Subscriptions: https://api.slack.com/events-api#subscriptions
-.. _dev4slack: http://dev4slack.xoxco.com/
+.. _Bot Developer Hangout: http://dev4slack.xoxco.com/
 .. _#slack-api: https://dev4slack.slack.com/messages/slack-api/
 .. _create an Issue: https://github.com/slackapi/python-slack-events-api/issues/new
