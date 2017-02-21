@@ -1,0 +1,14 @@
+*.pyc
+.cache
+.idea
+dist
+slackceventsapi.egg-info
+*.log
+env
+.tox
+*.un~
+0/
+tests/.cache
+.coverage
+.cache
+.DS_Store
