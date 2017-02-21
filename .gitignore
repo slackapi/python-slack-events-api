@@ -2,7 +2,7 @@
 .cache
 .idea
 dist
-slackceventsapi.egg-info
+slackeventsapi.egg-info
 *.log
 env
 .tox

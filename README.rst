@@ -1,10 +1,23 @@
 Slack Events API adapter for Python
 ===================================
 
+.. image:: https://travis-ci.org/slackapi/python-slack-events-api.svg?branch=master
+    :target: https://travis-ci.org/slackapi/python-slack-events-api
+.. image:: https://codecov.io/gh/slackapi/python-slack-events-api/branch/master/graph/badge.svg
+  :target: https://codecov.io/gh/slackapi/python-slack-events-api
+
+
 The Slack Events Adapter is a Python-based solution to receive and parse events
 from Slack’s Events API. This library uses an event emitter framework to allow
 you to easily process Slack events by simply attaching functions
 to event listeners.
+
+This adapter enhances and simplifies Slack's Events API by incorporating useful best practices, patterns, and opportunities to abstract out common tasks.
+
+💡  We wrote a `blog post which explains how`_ the Events API can help you, why we built these tools, and how you can use them to build production-ready Slack apps.
+
+.. _blog post which explains how: https://medium.com/@SlackAPI/enhancing-slacks-events-api-7535827829ab
+
 
 🤖  Installation
 ------------
@@ -19,10 +32,6 @@ to event listeners.
 Before you can use the `Events API`_ you must
 `create a Slack App`_, and turn on
 `Event Subscriptions`_.
-
-.. _Events API: https://api.slack.com/events-api
-.. _create a Slack App: https://api.slack.com/apps/new
-.. _Event Subscriptions: https://api.slack.com/events-api#subscriptions
 
 💡  When you add the Request URL to your app's Event Subscription settings,
 Slack will send a request containing a `challenge` code to verify that your
@@ -106,13 +115,13 @@ SlackClient Web API client.
 🤔  Support
 -------
 
-Need help? Join `dev4slack`_ and talk to us in `#slack-api`_.
+Need help? Join `Bot Developer Hangout`_ and talk to us in `#slack-api`_.
 
 You can also `create an Issue`_ right here on GitHub.
 
 .. _Events API: https://api.slack.com/events-api
 .. _create a Slack App: https://api.slack.com/apps/new
 .. _Event Subscriptions: https://api.slack.com/events-api#subscriptions
-.. _dev4slack: http://dev4slack.xoxco.com/
+.. _Bot Developer Hangout: http://dev4slack.xoxco.com/
 .. _#slack-api: https://dev4slack.slack.com/messages/slack-api/
 .. _create an Issue: https://github.com/slackapi/python-slack-events-api/issues/new
