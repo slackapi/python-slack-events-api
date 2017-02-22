@@ -1,8 +1,8 @@
 *.pyc
 .cache
 .idea
-dist
-slackeventsapi.egg-info
+dist/
+slackeventsapi.egg-info/
 *.log
 env
 .tox
