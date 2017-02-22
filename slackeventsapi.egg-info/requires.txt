@@ -1,4 +1,0 @@
-flask
-pyee
-requests
-six
