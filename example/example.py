@@ -57,7 +57,7 @@ def thanks():
     team_name = auth_response.get("team_name")
     bot_token = auth_response["bot"].get("bot_access_token")
 
-    # Create a SlackClient for your bot to respond to use for Web API requests
+    # Create a SlackClient for your bot to use for Web API requests
     CLIENTS[team_id] = SlackClient(bot_token)
     return "Your app has been installed on <b>%s</b>" % team_name
 
