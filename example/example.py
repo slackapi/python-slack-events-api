@@ -23,7 +23,7 @@ SLACK_CLIENT_SECRET = os.environ["SLACK_CLIENT_SECRET"]
 @slack_events_adapter.server.route("/", methods=["GET"])
 def pre_install():
     add_to_slack = """
-        <a href="https://slack.com/oauth/authorize?scope=bot,reactions:read&client_id=%s">
+        <a href="https://slack.com/oauth/authorize?scope=bot&client_id=%s">
             <img alt="Add to Slack" src="https://platform.slack-edge.com/img/add_to_slack.png"/>
         </a>
     """ % SLACK_CLIENT_ID
