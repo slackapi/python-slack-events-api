@@ -23,7 +23,7 @@ SLACK_CLIENT_SECRET = os.environ["SLACK_CLIENT_SECRET"]
 @slack_events_adapter.server.route("/", methods=["GET"])
 def pre_install():
     add_to_slack = """
-        <a href="https://slack.com/oauth/authorize?scope=bot&client_id=%s">
+        <a href="https://slack.com/oauth/authorize?scope=bot,reactions:read&client_id=%s">
             <img alt="Add to Slack" src="https://platform.slack-edge.com/img/add_to_slack.png"/>
         </a>
     """ % SLACK_CLIENT_ID
@@ -57,7 +57,7 @@ def thanks():
     team_name = auth_response.get("team_name")
     bot_token = auth_response["bot"].get("bot_access_token")
 
-    # Create a SlackClient for your bot to respond to use for Web API requests
+    # Create a SlackClient for your bot to use for Web API requests
     CLIENTS[team_id] = SlackClient(bot_token)
     return "Your app has been installed on <b>%s</b>" % team_name
 
