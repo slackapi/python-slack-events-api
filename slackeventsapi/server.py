@@ -19,6 +19,7 @@ class SlackServer(Flask):
             # Verify the request token
             request_token = event_data.get("token")
             if self.verification_token != request_token:
+                emitter.emit('error', 'invalid verification token')
                 return make_response("Request contains invalid Slack verification token", 403)
 
             # Echo the URL verification challenge code
