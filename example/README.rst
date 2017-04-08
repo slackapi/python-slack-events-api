@@ -47,7 +47,7 @@ Visit your app's **Install App** page and click **Install App to Team**.
 
 Authorize your app
 
-.. image:: https://cloud.githubusercontent.com/assets/32463/24823911/a1d2f7c2-1bb8-11e7-96e2-6c71d4a9b66f.png
+.. image:: https://cloud.githubusercontent.com/assets/32463/24824091/d88e151a-1bba-11e7-8800-bc21c2ade036.png
    :width: 500 px
 
 
