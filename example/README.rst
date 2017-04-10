@@ -1,12 +1,12 @@
 Example Slack events API bot
-============================
+=============================
 
 This example app shows how easy it is to implement the Slack Events API Adapter
 to receive Slack Events, extend it to handle the OAuth flow and respond to
 messages using Slack's Web API via python-slackclient.
 
 🤖  Setup and running the app
-------------
+------------------------------
 
 **Set up your Python environment:**
 
@@ -30,20 +30,45 @@ See `virtualenv`_ docs for more info.
 
 Create a Slack app on https://api.slack.com/apps/
 
-.. image:: https://cloud.githubusercontent.com/assets/32463/20549718/afdd98d0-b0e3-11e6-8d83-8ad7053deb80.png
+.. image:: https://cloud.githubusercontent.com/assets/32463/24877733/32979776-1de5-11e7-87d4-b5dc9e3e7973.png
 
-Add a **bot user** for your app
+**🤖  Add a bot user to your app**
 
-.. image:: https://cloud.githubusercontent.com/assets/32463/20371297/9044e2a0-ac18-11e6-8f25-3ffbd8a3bf58.png
+.. image:: https://cloud.githubusercontent.com/assets/32463/24877750/47a16034-1de5-11e7-989b-2a90b9d8e7e3.png
 
-**🤖  Run the app:**
+**🤖  Install your app on your team**
 
-You'll need to have your server and ngrok running to complete your app's Event
-Subscription setup
+Visit your app's **Install App** page and click **Install App to Team**.
+
+.. image:: https://cloud.githubusercontent.com/assets/32463/24877770/61804c36-1de5-11e7-91ef-5cf2e0845729.png
+
+Authorize your app
+
+.. image:: https://cloud.githubusercontent.com/assets/32463/24877792/774ed94c-1de5-11e7-8857-ac8d662c5b27.png
+
+**🤖  Save your app's credentials**
+
+Once you've authorized your app, you'll be presented with your app's tokens.
+
+.. image:: https://cloud.githubusercontent.com/assets/32463/24877652/d8eebbb4-1de4-11e7-8f75-2cfb1e9d45ee.png
+
+Copy your app's **Bot User OAuth Access Token** and add it to your python environmental variables
 
 .. code::
 
-  python example.py
+  export SLACK_BOT_TOKEN=xxxXXxxXXxXXxXXXXxxxX.xXxxxXxxxx
+
+Next, go back to your app's **Basic Information** page
+
+.. image:: https://cloud.githubusercontent.com/assets/32463/24877833/950dd53c-1de5-11e7-984f-deb26e8b9482.png
+
+Add your app's **Client ID**, **Client Secret** and **Verification Token** to your python environmental variables
+
+.. code::
+
+  export SLACK_CLIENT_ID=xxxxxxxxxxx.xxxxxxxxxxxxx
+  export SLACK_CLIENT_SECRET=XxxxXxxXXXxxXxxXX
+  export SLACK_VERIFICATION_TOKEN=xxxxxxxxXxxXxxXxXXXxxXxxx
 
 **🤖  Start ngrok**
 
@@ -71,48 +96,24 @@ Run ngrok and copy the **HTTPS** URL
   Forwarding http://h7465j.ngrok.io -> localhost:9292
   Forwarding https://h7465j.ngrok.io -> localhost:9292
 
-**🤖  Subscribe your app to events**
+**🤖  Run the app:**
 
-Add your **Request URL** (your ngrok URL + ``/slack/events``) and subscribe your app to `message.channels` under bot events. **Save** and toggle **Enable Events** to `on`
-
-.. image:: https://cloud.githubusercontent.com/assets/32463/20366593/b40d14a4-ac00-11e6-8413-b473c16ef997.png
-
-.. image:: https://cloud.githubusercontent.com/assets/32463/20549612/e7ee2ed4-b0e2-11e6-8b9c-01ed08057c7c.png
-
-**🤖  Save your app's credentials**
-
-Go to your app's **Basic Information** page and save your app's **Client ID**, **Client Secret** and **Verification Token** to environmental variables
-
-.. image:: https://cloud.githubusercontent.com/assets/32463/20445302/61ddfc54-ad89-11e6-8523-245a60c875b0.png
-
-**🤖  Add your OAuth URL**
-
-Add your OAuth redirect URL (your ngrok URL + ``/auth/slack/callback``)
-
-.. image:: https://cloud.githubusercontent.com/assets/32463/20543629/63e41a26-b0bb-11e6-8eee-90c6f4f1dbb1.png
-
-**🤖  Assign your app's credentials to environment variables:**
-
-.. code::
-
-  export SLACK_CLIENT_ID=xxxxxxxxxxx.xxxxxxxxxxxxx
-  export SLACK_CLIENT_SECRET=XxxxXxxXXXxxXxxXX
-  export SLACK_VERIFICATION_TOKEN=xxxxxxxxXxxXxxXxXXXxxXxxx
-
-**🤖  Restart your app to load it's credentials**
+You'll need to have your server and ngrok running to complete your app's Event
+Subscription setup
 
 .. code::
 
   python example.py
 
+**🤖  Subscribe your app to events**
 
-**🤖  Auth your app**
+Add your **Request URL** (your ngrok URL + ``/slack/events``) and subscribe your app to `message.channels` under bot events. **Save** and toggle **Enable Events** to `on`
 
-Go to your ngrok URL (e.g. https://myapp12.ngrok.com/) and auth your app.
+.. image:: https://cloud.githubusercontent.com/assets/32463/24877867/b39d4384-1de5-11e7-9676-9e47ea7db4e7.png
 
-.. image:: https://cloud.githubusercontent.com/assets/32463/20575277/789c0c5a-b16d-11e6-86fd-e30c3a0d2e61.gif
+.. image:: https://cloud.githubusercontent.com/assets/32463/24877931/e119181a-1de5-11e7-8b0c-fcbc3419bad7.png
 
-**🎉 Once your app has been authorized, you will begin receiving Slack events**
+**🎉  Once your app has been installed and subscribed to Bot Events, you will begin receiving event data from Slack**
 
 **👋  Interact with your bot:**
 
@@ -123,15 +124,12 @@ Invite your bot to a public channel, then say hi and your bot will respond
 .. image:: https://cloud.githubusercontent.com/assets/32463/23047918/964defec-f467-11e6-87c3-9c7da11fc810.gif
 
 🤔  Support
--------
+------------
 
 Need help? Join `Bot Developer Hangout`_ and talk to us in `#slack-api`_.
 
 You can also `create an Issue`_ right here on GitHub.
 
-.. _Events API: https://api.slack.com/events-api
-.. _create a Slack App: https://api.slack.com/apps/new
-.. _Event Subscriptions: https://api.slack.com/events-api#subscriptions
 .. _Bot Developer Hangout: http://dev4slack.xoxco.com/
 .. _#slack-api: https://dev4slack.slack.com/messages/slack-api/
 .. _create an Issue: https://github.com/slackapi/node-slack-events-api/issues/new
