@@ -43,22 +43,18 @@ Create a Slack app on https://api.slack.com/apps/
 Visit your app's **Install App** page and click **Install App to Team**.
 
 .. image:: https://cloud.githubusercontent.com/assets/32463/24821248/5a0d5e8e-1ba2-11e7-8ca1-5461337a8046.png
-   :width: 500 px
 
 Authorize your app
 
 .. image:: https://cloud.githubusercontent.com/assets/32463/24824091/d88e151a-1bba-11e7-8800-bc21c2ade036.png
-   :width: 500 px
-
 
 **🤖  Save your app's credentials**
 
 Once you've authorized your app, you'll be presented with your app's tokens.
 
 .. image:: https://cloud.githubusercontent.com/assets/32463/24824016/c5f71628-1bb9-11e7-9662-a8919e5dc80f.png
-   :width: 500 px
 
-Copy your app's **Bot User OAuth Access Token** and set your app's environmental variables
+Copy your app's **Bot User OAuth Access Token** and add it to your python environmental variables
 
 .. code::
 
@@ -67,9 +63,8 @@ Copy your app's **Bot User OAuth Access Token** and set your app's environmental
 Next, go back to your app's **Basic Information** page
 
 .. image:: https://cloud.githubusercontent.com/assets/32463/20445302/61ddfc54-ad89-11e6-8523-245a60c875b0.png
-   :width: 500 px
 
-Save your app's **Client ID**, **Client Secret** and **Verification Token** to environmental variables
+Add your app's **Client ID**, **Client Secret** and **Verification Token** to your python environmental variables
 
 .. code::
 
@@ -117,10 +112,8 @@ Subscription setup
 Add your **Request URL** (your ngrok URL + ``/slack/events``) and subscribe your app to `message.channels` under bot events. **Save** and toggle **Enable Events** to `on`
 
 .. image:: https://cloud.githubusercontent.com/assets/32463/20366593/b40d14a4-ac00-11e6-8413-b473c16ef997.png
-   :width: 500 px
 
 .. image:: https://cloud.githubusercontent.com/assets/32463/20549612/e7ee2ed4-b0e2-11e6-8b9c-01ed08057c7c.png
-   :width: 500 px
 
 **🎉  Once your app has been installed and subscribed to Bot Events, you will begin receiving event data from Slack**
 
@@ -131,7 +124,6 @@ Invite your bot to a public channel, then say hi and your bot will respond
     hi @bot 👋
 
 .. image:: https://cloud.githubusercontent.com/assets/32463/23047918/964defec-f467-11e6-87c3-9c7da11fc810.gif
-   :width: 500 px
 
 🤔  Support
 ------------
