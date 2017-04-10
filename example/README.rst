@@ -30,29 +30,27 @@ See `virtualenv`_ docs for more info.
 
 Create a Slack app on https://api.slack.com/apps/
 
-.. image:: https://cloud.githubusercontent.com/assets/32463/20549718/afdd98d0-b0e3-11e6-8d83-8ad7053deb80.png
-   :width: 500 px
+.. image:: https://cloud.githubusercontent.com/assets/32463/24877733/32979776-1de5-11e7-87d4-b5dc9e3e7973.png
 
 **🤖  Add a bot user to your app**
 
-.. image:: https://cloud.githubusercontent.com/assets/32463/20371297/9044e2a0-ac18-11e6-8f25-3ffbd8a3bf58.png
-   :width: 500 px
+.. image:: https://cloud.githubusercontent.com/assets/32463/24877750/47a16034-1de5-11e7-989b-2a90b9d8e7e3.png
 
 **🤖  Install your app on your team**
 
 Visit your app's **Install App** page and click **Install App to Team**.
 
-.. image:: https://cloud.githubusercontent.com/assets/32463/24821248/5a0d5e8e-1ba2-11e7-8ca1-5461337a8046.png
+.. image:: https://cloud.githubusercontent.com/assets/32463/24877770/61804c36-1de5-11e7-91ef-5cf2e0845729.png
 
 Authorize your app
 
-.. image:: https://cloud.githubusercontent.com/assets/32463/24824091/d88e151a-1bba-11e7-8800-bc21c2ade036.png
+.. image:: https://cloud.githubusercontent.com/assets/32463/24877792/774ed94c-1de5-11e7-8857-ac8d662c5b27.png
 
 **🤖  Save your app's credentials**
 
 Once you've authorized your app, you'll be presented with your app's tokens.
 
-.. image:: https://cloud.githubusercontent.com/assets/32463/24824016/c5f71628-1bb9-11e7-9662-a8919e5dc80f.png
+.. image:: https://cloud.githubusercontent.com/assets/32463/24877652/d8eebbb4-1de4-11e7-8f75-2cfb1e9d45ee.png
 
 Copy your app's **Bot User OAuth Access Token** and add it to your python environmental variables
 
@@ -62,7 +60,7 @@ Copy your app's **Bot User OAuth Access Token** and add it to your python enviro
 
 Next, go back to your app's **Basic Information** page
 
-.. image:: https://cloud.githubusercontent.com/assets/32463/20445302/61ddfc54-ad89-11e6-8523-245a60c875b0.png
+.. image:: https://cloud.githubusercontent.com/assets/32463/24877833/950dd53c-1de5-11e7-984f-deb26e8b9482.png
 
 Add your app's **Client ID**, **Client Secret** and **Verification Token** to your python environmental variables
 
@@ -111,9 +109,9 @@ Subscription setup
 
 Add your **Request URL** (your ngrok URL + ``/slack/events``) and subscribe your app to `message.channels` under bot events. **Save** and toggle **Enable Events** to `on`
 
-.. image:: https://cloud.githubusercontent.com/assets/32463/20366593/b40d14a4-ac00-11e6-8413-b473c16ef997.png
+.. image:: https://cloud.githubusercontent.com/assets/32463/24877867/b39d4384-1de5-11e7-9676-9e47ea7db4e7.png
 
-.. image:: https://cloud.githubusercontent.com/assets/32463/20549612/e7ee2ed4-b0e2-11e6-8b9c-01ed08057c7c.png
+.. image:: https://cloud.githubusercontent.com/assets/32463/24877931/e119181a-1de5-11e7-8b0c-fcbc3419bad7.png
 
 **🎉  Once your app has been installed and subscribed to Bot Events, you will begin receiving event data from Slack**
 
