@@ -60,9 +60,6 @@ user has authorized your app.
     ⚠️  We strongly discourage using ngrok for
     anything but development. It’s not well-suited for production use.
 
-    💡  See the example app included in this repository for more information
-    on implementing OAuth.
-
 🤖  Usage
 -----
   **⚠️  Keep your app's credentials safe!**
@@ -107,7 +104,7 @@ For a comprehensive list of available Slack `Events` and more information on
 🤖  Examples
 --------
 
-See `example.py`_ for usage examples. This example also utilizes OAuth and the
+See `example.py`_ for usage examples. This example also utilizes the
 SlackClient Web API client.
 
 .. _example.py: /example/
