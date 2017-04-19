@@ -21,7 +21,7 @@ class SlackServer(Flask):
                 return make_response(
                     event_data.get("challenge"), 200, {"content_type": "application/json"}
                 )
-            
+
             # Verify the request token
             request_token = event_data.get("token")
             if self.verification_token != request_token:
