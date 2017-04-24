@@ -12,8 +12,6 @@ SLACK_VERIFICATION_TOKEN = os.environ["SLACK_VERIFICATION_TOKEN"]
 slack_events_adapter = SlackEventAdapter(SLACK_VERIFICATION_TOKEN, "/slack/events")
 
 # Slack App credentials for OAuth
-SLACK_CLIENT_ID = os.environ["SLACK_CLIENT_ID"]
-SLACK_CLIENT_SECRET = os.environ["SLACK_CLIENT_SECRET"]
 SLACK_BOT_TOKEN = os.environ["SLACK_BOT_TOKEN"]
 
 # Create a SlackClient for your bot to use for Web API requests
