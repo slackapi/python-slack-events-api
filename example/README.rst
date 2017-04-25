@@ -62,12 +62,10 @@ Next, go back to your app's **Basic Information** page
 
 .. image:: https://cloud.githubusercontent.com/assets/32463/24877833/950dd53c-1de5-11e7-984f-deb26e8b9482.png
 
-Add your app's **Client ID**, **Client Secret** and **Verification Token** to your python environmental variables
+Add your app's **Verification Token** to your python environmental variables
 
 .. code::
 
-  export SLACK_CLIENT_ID=xxxxxxxxxxx.xxxxxxxxxxxxx
-  export SLACK_CLIENT_SECRET=XxxxXxxXXXxxXxxXX
   export SLACK_VERIFICATION_TOKEN=xxxxxxxxXxxXxxXxXXXxxXxxx
 
 **🤖  Start ngrok**
@@ -75,7 +73,11 @@ Add your app's **Client ID**, **Client Secret** and **Verification Token** to yo
 In order for Slack to contact your local server, you'll need to run a tunnel. We
 recommend ngrok or localtunnel. We're going to use ngrok for this example.
 
-    💡  Slack requires event requests be delivered over SSL, so you'll want to
+If you don't have ngrok, `download it here`_.
+
+.. _download it here: https://roach.ngrok.io/install
+
+💡  Slack requires event requests be delivered over SSL, so you'll want to
     use the HTTPS URL provided by ngrok.
 
 Run ngrok and copy the **HTTPS** URL
