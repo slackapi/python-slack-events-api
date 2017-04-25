@@ -10,13 +10,26 @@ messages using Slack's Web API via python-slackclient.
 
 **Set up your Python environment:**
 
-See `virtualenv`_ docs for more info.
+We're using virtualenv to keep the dependencies and environmental variables specific to this app. See `virtualenv`_ docs for more info.
 
 .. _virtualenv: https://virtualenv.pypa.io
+
+This example app works best in Python 2.7. If 2.7 is your default version, create a virtual environment by running:
 
 .. code::
 
   virtualenv -p /your/path/to/python2 env
+
+Otherwise, if Python 3+ is your default, specify the path to your 2.7 instance:
+
+.. code::
+
+  virtualenv -p /your/path/to/python2 env
+
+Then initialize the virtualenv:
+
+.. code::
+
   source env/bin/activate
 
 
