@@ -18,7 +18,7 @@ This example app works best in Python 2.7. If 2.7 is your default version, creat
 
 .. code::
 
-  virtualenv -p /your/path/to/python2 env
+  virtualenv env
 
 Otherwise, if Python 3+ is your default, specify the path to your 2.7 instance:
 
