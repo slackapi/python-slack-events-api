@@ -11,12 +11,11 @@ CLIENTS = {}
 SLACK_VERIFICATION_TOKEN = os.environ["SLACK_VERIFICATION_TOKEN"]
 slack_events_adapter = SlackEventAdapter(SLACK_VERIFICATION_TOKEN, "/slack/events")
 
-# Slack App credentials for OAuth
+# Slack bot user credentials
 SLACK_BOT_TOKEN = os.environ["SLACK_BOT_TOKEN"]
 
 # Create a SlackClient for your bot to use for Web API requests
 CLIENT = SlackClient(SLACK_BOT_TOKEN)
-
 
 # Example responder to greetings
 @slack_events_adapter.on("message")
