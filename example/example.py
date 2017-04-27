@@ -1,11 +1,6 @@
 from slackeventsapi import SlackEventAdapter
 from slackclient import SlackClient
-from flask import request
 import os
-
-# We'll store the SlackClient instances for each team in a
-# dictionary, so we can have multiple teams authed
-CLIENTS = {}
 
 # Our app's Slack Event Adapter for receiving actions via the Events API
 SLACK_VERIFICATION_TOKEN = os.environ["SLACK_VERIFICATION_TOKEN"]
