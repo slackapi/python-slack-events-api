@@ -96,7 +96,7 @@ recommend ngrok or localtunnel. We're going to use ngrok for this example.
 
 If you don't have ngrok, `download it here`_.
 
-.. _download it here: https://roach.ngrok.io/install
+.. _download it here: https://ngrok.com
 
 
 Here's a rudimentary diagream of how ngrok allows Slack to connect to your server
