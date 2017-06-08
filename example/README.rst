@@ -59,14 +59,6 @@ Authorize your app
 
 .. image:: https://cloud.githubusercontent.com/assets/32463/24877792/774ed94c-1de5-11e7-8857-ac8d662c5b27.png
 
-**🤖  Subscribe your app to events**
-
-Add your **Request URL** (your ngrok URL + ``/slack/events``) and subscribe your app to `message.channels` under bot events. **Save** and toggle **Enable Events** to `on`
-
-.. image:: https://cloud.githubusercontent.com/assets/32463/24877867/b39d4384-1de5-11e7-9676-9e47ea7db4e7.png
-
-.. image:: https://cloud.githubusercontent.com/assets/32463/24877931/e119181a-1de5-11e7-8b0c-fcbc3419bad7.png
-
 **🤖  Save your app's credentials**
 
 Once you've authorized your app, you'll be presented with your app's tokens.
@@ -88,6 +80,7 @@ Add your app's **Verification Token** to your python environmental variables
 .. code::
 
   export SLACK_VERIFICATION_TOKEN=xxxxxxxxXxxXxxXxXXXxxXxxx
+
 
 **🤖  Start ngrok**
 
@@ -133,6 +126,15 @@ Subscription setup
 .. code::
 
   python example.py
+
+
+**🤖  Subscribe your app to events**
+
+Add your **Request URL** (your ngrok URL + ``/slack/events``) and subscribe your app to `message.channels` under bot events. **Save** and toggle **Enable Events** to `on`
+
+.. image:: https://cloud.githubusercontent.com/assets/32463/24877867/b39d4384-1de5-11e7-9676-9e47ea7db4e7.png
+
+.. image:: https://cloud.githubusercontent.com/assets/32463/24877931/e119181a-1de5-11e7-8b0c-fcbc3419bad7.png
 
 **🎉  Once your app has been installed and subscribed to Bot Events, you will begin receiving event data from Slack**
 
