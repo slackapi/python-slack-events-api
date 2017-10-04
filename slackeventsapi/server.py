@@ -22,16 +22,14 @@ class SlackServer(Flask):
                     event_data.get("challenge"), 200, {"content_type": "application/json"}
                 )
 
+            # Verify the request token
+            request_token = event_data.get("token")
+            if self.verification_token != request_token:
+                emitter.emit('error', 'invalid verification token')
+                return make_response("Request contains invalid Slack verification token", 403)
+
             # Parse the Event payload and emit the event to the event listener
             if "event" in event_data:
-                # Verify the request token
-                request_token = event_data.get("token")
-                if self.verification_token != request_token:
-                    emitter.emit('error', 'invalid verification token')
-                    message = "Request contains invalid Slack verification token: %s\n" \
-                              "Slack adapter has: %s" % (request_token, self.verification_token)
-                    return make_response(message, 403)
-
                 event_type = event_data["event"]["type"]
                 emitter.emit(event_type, event_data)
                 return make_response("", 200)
