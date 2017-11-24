@@ -10,5 +10,5 @@ class SlackEventAdapter(EventEmitter):
         self.verification_token = verification_token
         self.server = SlackServer(verification_token, endpoint, self)
 
-    def start(self, port=None, debug=False):
-        self.server.run(port=port, debug=debug)
+    def start(self, **kwargs):
+        self.server.run(**kwargs)
