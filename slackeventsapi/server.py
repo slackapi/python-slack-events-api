@@ -14,7 +14,7 @@ class SlackServer(Flask):
                 return make_response("These are not the slackbots you're looking for.", 404)
 
             # Parse the request payload into JSON
-            event_data = json.loads(request.data)
+            event_data = json.loads(request.data.decode('utf-8'))
 
             # Echo the URL verification challenge code
             if "challenge" in event_data:
