@@ -42,7 +42,7 @@ URL accordingly.
 ✅  Once you have your `Request URL` verified, your app is ready to start
 receiving Team Events.
 
-🔑  Your server will begin receiving Events form Slack's Events API as soon as a
+🔑  Your server will begin receiving Events from Slack's Events API as soon as a
 user has authorized your app.
 
 🤖  Development workflow:
