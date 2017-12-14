@@ -132,7 +132,7 @@ Subscription setup
 
 Add your **Request URL** (your ngrok URL + ``/slack/events``) and subscribe your app to `message.channels` under bot events. **Save** and toggle **Enable Events** to `on`
 
-.. image:: https://cloud.githubusercontent.com/assets/32463/24877867/b39d4384-1de5-11e7-9676-9e47ea7db4e7.png
+.. image:: https://user-images.githubusercontent.com/1573454/30185162-644d0cb8-93ee-11e7-96af-55fe10d9d5c8.png
 
 .. image:: https://cloud.githubusercontent.com/assets/32463/24877931/e119181a-1de5-11e7-8b0c-fcbc3419bad7.png
 
