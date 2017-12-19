@@ -1,6 +1,9 @@
-# Changelog
+Changelog
+============
 
-### v1.0.1 (2017-12-18)
+
+ v1.0.1 (2017-12-18)
+---------------------
 
  - Added change log ✅
  - Decode byte stream into utf-8 - fixing Python 3 compatability issue (Thanks @navinpai!)
@@ -8,6 +11,7 @@
  - Improved verification token logic (Thanks @benoitlavigne!)
 
 
-### v1.0.0 (2017-02-22)
+v1.0.0 (2017-02-22)
+---------------------
 
  - Initial release 🎉
