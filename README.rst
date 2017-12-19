@@ -20,9 +20,9 @@ This adapter enhances and simplifies Slack's Events API by incorporating useful 
 
 
 🤖  Installation
-------------
+----------------
 
-.. code::
+.. code:: shell
 
   pip install slackeventsapi
 
@@ -61,7 +61,7 @@ user has authorized your app.
     anything but development. It’s not well-suited for production use.
 
 🤖  Usage
------
+---------
   **⚠️  Keep your app's credentials safe!**
 
   - For development, keep them in virtualenv variables.
@@ -80,7 +80,7 @@ Create a Slack Event Adapter for receiving actions via the Events API
 
   from slackeventsapi import SlackEventAdapter
 
-  slack_events_adapter = SlackEventAdapter(SLACK_VERIFICATION_TOKEN, endpoint="/slack/events")
+  slack_events_adapter = SlackEventAdapter(SLACK_VERIFICATION_TOKEN, endpoint="/slack_events")
 
 Create an event listener for "reaction_added" events and print the emoji name
 
@@ -102,7 +102,7 @@ For a comprehensive list of available Slack `Events` and more information on
 `Scopes`, see https://api.slack.com/events-api
 
 🤖  Examples
---------
+------------
 
 See `example.py`_ for usage examples. This example also utilizes the
 SlackClient Web API client.
@@ -110,7 +110,7 @@ SlackClient Web API client.
 .. _example.py: /example/
 
 🤔  Support
--------
+-----------
 
 Need help? Join `Bot Developer Hangout`_ and talk to us in `#slack-api`_.
 
