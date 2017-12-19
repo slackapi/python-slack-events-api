@@ -7,7 +7,7 @@ Changelog
 
  - Added change log ✅
  - Decode byte stream into utf-8 - fixing Python 3 compatability issue (Thanks @navinpai!)
- - Added `host` argument, to bind to bind to hosts other than `localhost` (Thanks @calvinhp!)
+ - Added `host` argument, to bind to hosts other than `localhost` (Thanks @calvinhp!)
  - Improved verification token logic (Thanks @benoitlavigne!)
 
 
