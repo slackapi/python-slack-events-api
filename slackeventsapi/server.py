@@ -3,7 +3,12 @@ import json
 
 
 class SlackServer(Flask):
-    def __init__(self, verification_token, endpoint, emitter, health_endpoint='/health', health_callback=None):
+    def __init__(self,
+                 verification_token,
+                 endpoint,
+                 emitter,
+                 health_endpoint='/health',
+                 health_callback=None):
         Flask.__init__(self, __name__)
         self._health_callback = health_callback
         self.verification_token = verification_token
