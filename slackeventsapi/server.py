@@ -3,8 +3,14 @@ import json
 
 
 class SlackServer(Flask):
-    def __init__(self, verification_token, endpoint, emitter):
+    def __init__(self,
+                 verification_token,
+                 endpoint,
+                 emitter,
+                 health_endpoint='/health',
+                 health_callback=None):
         Flask.__init__(self, __name__)
+        self._health_callback = health_callback
         self.verification_token = verification_token
 
         @self.route(endpoint, methods=['GET', 'POST'])
@@ -33,3 +39,9 @@ class SlackServer(Flask):
                 event_type = event_data["event"]["type"]
                 emitter.emit(event_type, event_data)
                 return make_response("", 200)
+
+        @self.route(health_endpoint, methods=['GET'])
+        def health():
+            if self._health_callback is not None:
+                return health_callback()
+            return make_response("healthy", 200)

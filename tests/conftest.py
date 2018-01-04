@@ -1,5 +1,6 @@
 import pytest
 import json
+from flask import make_response
 from slackeventsapi import SlackEventAdapter
 
 
@@ -27,8 +28,21 @@ def pytest_namespace():
     }
 
 
-@pytest.fixture
-def app():
+@pytest.fixture()
+def app(request):
+    if request.node.get_marker('health_custom') is not None and request.node.get_marker('health_ok') is not None:
+        def health():
+            return make_response('healthy', 200)
+        adapter = SlackEventAdapter("vFO9LARnLI7GflLR8tGqHgdy", health_endpoint='/health_custom', health_callback=health)
+        app = adapter.server
+        return app
+    elif request.node.get_marker('health_custom') is not None and request.node.get_marker('health_unavailable') is not None:
+        def health():
+            return make_response('not ready', 503)
+        adapter = SlackEventAdapter("vFO9LARnLI7GflLR8tGqHgdy", health_endpoint='/health_custom', health_callback=health)
+        app = adapter.server
+        return app
+
     adapter = SlackEventAdapter("vFO9LARnLI7GflLR8tGqHgdy")
     app = adapter.server
     return app

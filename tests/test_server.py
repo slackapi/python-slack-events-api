@@ -25,3 +25,20 @@ def test_valid_event(client):
         data=data,
         content_type='application/json')
     assert res.status_code == 200
+
+@pytest.mark.health_ok
+def test_default_health_endpoint(client):
+    res = client.get('/health')
+    assert res.status_code == 200
+
+@pytest.mark.health_ok
+@pytest.mark.health_custom
+def test_custom_ok_health_endpoint(client):
+    res = client.get('/health_custom')
+    assert res.status_code == 200
+
+@pytest.mark.health_unavailable
+@pytest.mark.health_custom
+def test_custom_unavailable_health_endpoint(client):
+    res = client.get('/health_custom')
+    assert res.status_code == 503
