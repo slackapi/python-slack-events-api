@@ -1,6 +1,7 @@
 from flask import Flask, request, make_response
 import json
 
+
 class SlackServer(Flask):
     def __init__(self, verification_token, endpoint, emitter, server):
         self.verification_token = verification_token
