@@ -112,7 +112,7 @@ Create a Slack Event Adapter for receiving actions via the Events API
 
   # An example of one of your Flask app's routes
   @app.route("/")
-  def events(event_data):
+  def hello():
     return "Hello there!"
 
 
