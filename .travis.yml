@@ -12,6 +12,5 @@ install:
   - "travis_retry pip install tox"
 script:
   - tox -e $TOX_ENV
-  - py.test --cov-report= --cov=slackeventsapi tests
 after_script:
   - cat .tox/$TOX_ENV/log/*.log
