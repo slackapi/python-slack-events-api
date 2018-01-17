@@ -1,5 +1,20 @@
 import json
+from flask import Flask
 import pytest
+from slackeventsapi import SlackEventAdapter
+
+
+def test_existing_flask():
+    valid_flask = Flask(__name__)
+    valid_adapter = SlackEventAdapter("vFO9LARnLI7GflLR8tGqHgdy", "/slack/events", valid_flask)
+    assert isinstance(valid_adapter, SlackEventAdapter)
+
+
+def test_server_not_flask():
+    with pytest.raises(TypeError) as e:
+        invalid_flask = "I am not a Flask"
+        SlackEventAdapter("vFO9LARnLI7GflLR8tGqHgdy", "/slack/events", invalid_flask)
+    assert e.value.args[0] == 'Server must be an instance of Flask'
 
 
 def test_event_endpoint_get(client):
@@ -15,7 +30,7 @@ def test_url_challenge(client):
         data=data,
         content_type='application/json')
     assert res.status_code == 200
-    assert res.data == "valid_challenge_token"
+    assert bytes.decode(res.data) == "valid_challenge_token"
 
 
 def test_valid_event(client):
