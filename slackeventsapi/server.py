@@ -4,7 +4,6 @@ import json
 import sys
 
 
-
 class SlackServer(Flask):
     def __init__(self, verification_token, endpoint, emitter, server):
         self.verification_token = verification_token
