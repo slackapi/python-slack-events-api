@@ -56,7 +56,7 @@ def test_version_header(client):
         content_type='application/json')
 
     assert res.status_code == 200
-    assert res.headers["X-Slack-Adapter"] == pkg_info
+    assert res.headers["X-Slack-Powered-By"] == pkg_info
 
 
 def test_server_start(mocker):

@@ -50,5 +50,5 @@ class SlackServer(Flask):
                 response = make_response("", 200)
                 python_version = "{:d}.{:d}".format(sys.version_info.major, sys.version_info.minor)
                 pkg_info = "Python/{} SlackEventAdapter/{}".format(python_version, __version__)
-                response.headers['X-Slack-Adapter'] = pkg_info
+                response.headers['X-Slack-Powered-By'] = pkg_info
                 return response
