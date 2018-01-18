@@ -12,7 +12,7 @@ install:
   - travis_retry pip install flake8
   - travis_retry pip install -r requirements-dev.txt
 script:
-  - flake8 slackclient
+  - flake8 slackeventsapi
   - py.test --cov-report= --cov=slackeventsapi tests
 after_success:
   - codecov -e $TRAVIS_PYTHON_VERSION
