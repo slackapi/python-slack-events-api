@@ -1,7 +1,9 @@
 import json
 from flask import Flask
 import pytest
+import sys
 from slackeventsapi import SlackEventAdapter
+from slackeventsapi.version import __version__
 
 
 def test_existing_flask():
@@ -40,6 +42,21 @@ def test_valid_event_request(client):
         data=data,
         content_type='application/json')
     assert res.status_code == 200
+
+
+def test_version_header(client):
+    # Verify [package metadata header is set
+    python_version = "{:d}.{:d}".format(sys.version_info.major, sys.version_info.minor)
+    pkg_info = "Python-{}/SlackEventAdapter-{}".format(python_version, __version__)
+
+    data = pytest.reaction_event_fixture
+    res = client.post(
+        '/slack/events',
+        data=data,
+        content_type='application/json')
+
+    assert res.status_code == 200
+    assert res.headers["X-Slack-Adapter"] == pkg_info
 
 
 def test_server_start(mocker):

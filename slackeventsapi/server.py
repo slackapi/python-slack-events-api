@@ -1,5 +1,8 @@
 from flask import Flask, request, make_response
+from slackeventsapi.version import __version__
 import json
+import sys
+
 
 
 class SlackServer(Flask):
@@ -45,4 +48,8 @@ class SlackServer(Flask):
             if "event" in event_data:
                 event_type = event_data["event"]["type"]
                 self.emitter.emit(event_type, event_data)
-                return make_response("", 200)
+                response = make_response("", 200)
+                python_version = "{:d}.{:d}".format(sys.version_info.major, sys.version_info.minor)
+                pkg_info = "Python-{}/SlackEventAdapter-{}".format(python_version, __version__)
+                response.headers['X-Slack-Adapter'] = pkg_info
+                return response
