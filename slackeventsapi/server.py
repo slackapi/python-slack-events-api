@@ -1,7 +1,8 @@
 from flask import Flask, request, make_response
-from slackeventsapi.version import __version__
 import json
+import platform
 import sys
+from .version import __version__
 
 
 class SlackServer(Flask):
@@ -9,6 +10,7 @@ class SlackServer(Flask):
         self.verification_token = verification_token
         self.emitter = emitter
         self.endpoint = endpoint
+        self.package_info = self.get_package_info()
 
         # If a server is passed in, bind the event handler routes to it,
         # otherwise create a new Flask instance.
@@ -20,6 +22,24 @@ class SlackServer(Flask):
         else:
             Flask.__init__(self, __name__)
             self.bind_route(self)
+
+    def get_package_info(self):
+        client_name = __name__.split('.')[0]
+        client_version = __version__  # Version is returned from version.py
+
+        # Collect the package info, Python version and OS version.
+        package_info = {
+            "client": "{0}/{1}".format(client_name, client_version),
+            "python": "Python/{v.major}.{v.minor}.{v.micro}".format(v=sys.version_info),
+            "system": "{0}/{1}".format(platform.system(), platform.release())
+        }
+
+        # Concatenate and format the user-agent string to be passed into request headers
+        ua_string = []
+        for key, val in package_info.items():
+            ua_string.append(val)
+
+        return " ".join(ua_string)
 
     def bind_route(self, server):
         @server.route(self.endpoint, methods=['GET', 'POST'])
@@ -48,7 +68,5 @@ class SlackServer(Flask):
                 event_type = event_data["event"]["type"]
                 self.emitter.emit(event_type, event_data)
                 response = make_response("", 200)
-                python_version = "{:d}.{:d}".format(sys.version_info.major, sys.version_info.minor)
-                pkg_info = "Python/{} SlackEventAdapter/{}".format(python_version, __version__)
-                response.headers['X-Slack-Powered-By'] = pkg_info
+                response.headers['X-Slack-Powered-By'] = self.package_info
                 return response

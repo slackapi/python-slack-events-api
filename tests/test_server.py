@@ -46,8 +46,7 @@ def test_valid_event_request(client):
 
 def test_version_header(client):
     # Verify [package metadata header is set
-    python_version = "{:d}.{:d}".format(sys.version_info.major, sys.version_info.minor)
-    pkg_info = "Python/{} SlackEventAdapter/{}".format(python_version, __version__)
+    package_info = SlackEventAdapter("token").server.package_info
 
     data = pytest.reaction_event_fixture
     res = client.post(
@@ -56,12 +55,12 @@ def test_version_header(client):
         content_type='application/json')
 
     assert res.status_code == 200
-    assert res.headers["X-Slack-Powered-By"] == pkg_info
+    assert res.headers["X-Slack-Powered-By"] == package_info
 
 
 def test_server_start(mocker):
     # Verify server started with correct params
-    slack_events_adapter = SlackEventAdapter("token",)
+    slack_events_adapter = SlackEventAdapter("token")
     mocker.spy(slack_events_adapter, 'server')
     slack_events_adapter.start(port=3000)
     slack_events_adapter.server.run.assert_called_once_with(debug=False, host='127.0.0.1', port=3000)
