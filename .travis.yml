@@ -1,16 +1,18 @@
 sudo: false
+dist: trusty
 language: python
 python:
   - "2.7"
-env:
-  matrix:
-    - TOX_ENV=py27
-    - TOX_ENV=flake8
-cache: pip
+  - "3.3"
+  - "3.4"
+  - "3.5"
+  - "3.6"
 install:
-  - "travis_retry pip install setuptools --upgrade"
-  - "travis_retry pip install tox"
+  - travis_retry pip install -r requirements.txt
+  - travis_retry pip install flake8
+  - travis_retry pip install -r test_requirements.txt
 script:
-  - tox -e $TOX_ENV
-after_script:
-  - cat .tox/$TOX_ENV/log/*.log
+  - flake8 slackclient
+  - py.test --cov-report= --cov=slackeventsapi tests
+after_success:
+  - codecov -e $TRAVIS_PYTHON_VERSION
