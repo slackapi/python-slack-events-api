@@ -47,7 +47,7 @@ def test_valid_event_request(client):
 def test_version_header(client):
     # Verify [package metadata header is set
     python_version = "{:d}.{:d}".format(sys.version_info.major, sys.version_info.minor)
-    pkg_info = "Python-{}/SlackEventAdapter-{}".format(python_version, __version__)
+    pkg_info = "Python/{} SlackEventAdapter/{}".format(python_version, __version__)
 
     data = pytest.reaction_event_fixture
     res = client.post(
