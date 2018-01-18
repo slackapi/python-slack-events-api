@@ -2,12 +2,9 @@ sudo: false
 language: python
 python:
   - "2.7"
-  - "3.3"
-  - "3.4"
-  - "3.5"
-  - "3.6"
 env:
   matrix:
+    - TOX_ENV=py27
     - TOX_ENV=flake8
 cache: pip
 install:
