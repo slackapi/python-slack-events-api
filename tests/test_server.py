@@ -33,10 +33,18 @@ def test_url_challenge(client):
     assert bytes.decode(res.data) == "valid_challenge_token"
 
 
-def test_valid_event(client):
+def test_valid_event_request(client):
     data = pytest.reaction_event_fixture
     res = client.post(
         '/slack/events',
         data=data,
         content_type='application/json')
     assert res.status_code == 200
+
+
+def test_server_start(mocker):
+    # Verify server started with correct params
+    slack_events_adapter = SlackEventAdapter("token",)
+    mocker.spy(slack_events_adapter, 'server')
+    slack_events_adapter.start(port=3000)
+    slack_events_adapter.server.run.assert_called_once_with(debug=False, host='127.0.0.1', port=3000)
