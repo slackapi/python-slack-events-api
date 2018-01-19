@@ -1,8 +1,13 @@
 Changelog
 ============
 
+v1.1.0 (2018-01-19)
+---------------------
 
- v1.0.1 (2017-12-18)
+- Added the ability to pass an existing Flask instance into SlackEventAdapter
+- Added server response headers for python, os and package versions
+
+v1.0.1 (2017-12-18)
 ---------------------
 
  - Added change log ✅
