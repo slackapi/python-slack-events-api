@@ -46,7 +46,7 @@ receiving Team Events.
 user has authorized your app.
 
 🤖  Development workflow:
-------------------------------
+===========================
 
 (1) Create a Slack app on https://api.slack.com/apps/
 (2) Add a `bot user` for your app
@@ -57,11 +57,11 @@ user has authorized your app.
 
 **🎉 Once your app has been authorized, you will begin receiving Slack Events**
 
-    ⚠️  We strongly discourage using ngrok for
-    anything but development. It’s not well-suited for production use.
+    ⚠️  Ngrok is a great tool for developing Slack apps, but we don't recommend using ngrok
+    for production apps.
 
 🤖  Usage
----------
+----------
   **⚠️  Keep your app's credentials safe!**
 
   - For development, keep them in virtualenv variables.
@@ -75,34 +75,68 @@ user has authorized your app.
   SLACK_VERIFICATION_TOKEN = os.environ["SLACK_VERIFICATION_TOKEN"]
 
 Create a Slack Event Adapter for receiving actions via the Events API
+-----------------------------------------------------------------------
+**Using the built-in Flask server:**
 
 .. code:: python
 
   from slackeventsapi import SlackEventAdapter
 
+
   slack_events_adapter = SlackEventAdapter(SLACK_VERIFICATION_TOKEN, endpoint="/slack_events")
 
-Create an event listener for "reaction_added" events and print the emoji name
 
-.. code:: python
-
+  # Create an event listener for "reaction_added" events and print the emoji name
   @slack_events_adapter.on("reaction_added")
   def reaction_added(event):
     emoji = event.get("reaction")
     print(emoji)
 
 
-Start the server on port 3000
-
-.. code-block:: python
-
+  # Start the server on port 3000
   slack_events_adapter.start(port=3000)
+
+
+**Using your existing Flask instance:**
+
+
+.. code:: python
+
+  from flask import Flask
+  from slackeventsapi import SlackEventAdapter
+
+
+  # This `app` represents your existing Flask app
+  app = Flask(__name__)
+
+
+  # An example of one of your Flask app's routes
+  @app.route("/")
+  def hello():
+    return "Hello there!"
+
+
+  # Bind the Events API route to your existing Flask app by passing the server
+  # instance as the last param, or with `server=app`.
+  slack_events_adapter = SlackEventAdapter(SLACK_VERIFICATION_TOKEN, "/slack/events", app)
+
+
+  # Create an event listener for "reaction_added" events and print the emoji name
+  @slack_events_adapter.on("reaction_added")
+  def reaction_added(event):
+    emoji = event.get("reaction")
+    print(emoji)
+
+
+  # Start the server on port 3000
+  if __name__ == "__main__":
+    app.run(port=3000)
 
 For a comprehensive list of available Slack `Events` and more information on
 `Scopes`, see https://api.slack.com/events-api
 
-🤖  Examples
-------------
+🤖  Example event listeners
+-----------------------------
 
 See `example.py`_ for usage examples. This example also utilizes the
 SlackClient Web API client.
