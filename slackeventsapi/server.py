@@ -60,7 +60,7 @@ class SlackServer(Flask):
             # Verify the request token
             request_token = event_data.get("token")
             if self.verification_token != request_token:
-                self.emitter.emit('error', Exception('invalid verification token''))
+                self.emitter.emit('error', Exception('invalid verification token'))
                 return make_response("Request contains invalid Slack verification token", 403)
 
             # Parse the Event payload and emit the event to the event listener
