@@ -83,7 +83,7 @@ Create a Slack Event Adapter for receiving actions via the Events API
   from slackeventsapi import SlackEventAdapter
 
 
-  slack_events_adapter = SlackEventAdapter(SLACK_VERIFICATION_TOKEN, endpoint="/slack/events")
+  slack_events_adapter = SlackEventAdapter(SLACK_VERIFICATION_TOKEN, endpoint="/slack_events")
 
 
   # Create an event listener for "reaction_added" events and print the emoji name

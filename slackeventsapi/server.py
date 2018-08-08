@@ -2,12 +2,15 @@ from flask import Flask, request, make_response
 import json
 import platform
 import sys
+import hmac
+import hashlib
+from time import time
 from .version import __version__
 
 
 class SlackServer(Flask):
-    def __init__(self, verification_token, endpoint, emitter, server):
-        self.verification_token = verification_token
+    def __init__(self, signing_secret, endpoint, emitter, server, **kwargs):
+        self.signing_secret = signing_secret
         self.emitter = emitter
         self.endpoint = endpoint
         self.package_info = self.get_package_info()
@@ -41,6 +44,11 @@ class SlackServer(Flask):
 
         return " ".join(ua_string)
 
+    def verify_signature(self, timestamp, signature):
+        req = str.encode('v0:' + str(timestamp) + ':') + request.data
+        request_hash = 'v0='+hmac.new(str.encode(self.signing_secret), req, hashlib.sha256).hexdigest()
+        return hmac.compare_digest(request_hash, str(signature))
+
     def bind_route(self, server):
         @server.route(self.endpoint, methods=['GET', 'POST'])
         def event():
@@ -51,17 +59,25 @@ class SlackServer(Flask):
             # Parse the request payload into JSON
             event_data = json.loads(request.data.decode('utf-8'))
 
-            # Echo the URL verification challenge code
+            # Echo the URL verification challenge code back to Slack
             if "challenge" in event_data:
                 return make_response(
                     event_data.get("challenge"), 200, {"content_type": "application/json"}
                 )
 
-            # Verify the request token
-            request_token = event_data.get("token")
-            if self.verification_token != request_token:
-                self.emitter.emit('error', Exception('invalid verification token'))
-                return make_response("Request contains invalid Slack verification token", 403)
+            # Each request comes with request timestamp and request signature
+            # emit an error if the timestamp is out of range
+            req_timestamp = request.headers.get('X-Slack-Request-Timestamp')
+            if abs(time() - int(req_timestamp)) > 60 * 10:
+                self.emitter.emit('error', Exception('Request timestamp invalid'))
+                return make_response("", 200)
+
+            # Verify the request signature using the app's signing secret
+            # emit an error if the signature can't be verified
+            req_signature = request.headers.get('X-Slack-Signature')
+            if not self.verify_signature(req_timestamp, req_signature):
+                self.emitter.emit('error', Exception('invalid request signature'))
+                return make_response("", 200)
 
             # Parse the Event payload and emit the event to the event listener
             if "event" in event_data:
