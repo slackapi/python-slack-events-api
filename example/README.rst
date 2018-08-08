@@ -81,6 +81,12 @@ Add your app's **Verification Token** to your python environmental variables
 
   export SLACK_VERIFICATION_TOKEN=xxxxxxxxXxxXxxXxXXXxxXxxx
 
+Add your app's **Signing Secret** to your python environmental variables
+
+.. code::
+
+  export SLACK_SIGNING_SECRET=xxxxxxxxXxxXxxXxXXXxxXxxx
+
 
 **🤖  Start ngrok**
 
