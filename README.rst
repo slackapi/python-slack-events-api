@@ -72,7 +72,7 @@ user has authorized your app.
 
 .. code:: python
 
-  SLACK_VERIFICATION_TOKEN = os.environ["SLACK_VERIFICATION_TOKEN"]
+  SLACK_SIGNING_SECRET = os.environ["SLACK_SIGNING_SECRET"]
 
 Create a Slack Event Adapter for receiving actions via the Events API
 -----------------------------------------------------------------------
@@ -83,7 +83,7 @@ Create a Slack Event Adapter for receiving actions via the Events API
   from slackeventsapi import SlackEventAdapter
 
 
-  slack_events_adapter = SlackEventAdapter(SLACK_VERIFICATION_TOKEN, endpoint="/slack_events")
+  slack_events_adapter = SlackEventAdapter(SLACK_SIGNING_SECRET, endpoint="/slack/events")
 
 
   # Create an event listener for "reaction_added" events and print the emoji name
@@ -118,7 +118,7 @@ Create a Slack Event Adapter for receiving actions via the Events API
 
   # Bind the Events API route to your existing Flask app by passing the server
   # instance as the last param, or with `server=app`.
-  slack_events_adapter = SlackEventAdapter(SLACK_VERIFICATION_TOKEN, "/slack/events", app)
+  slack_events_adapter = SlackEventAdapter(SLACK_SIGNING_SECRET, "/slack/events", app)
 
 
   # Create an event listener for "reaction_added" events and print the emoji name

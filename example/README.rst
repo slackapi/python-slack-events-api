@@ -75,13 +75,7 @@ Next, go back to your app's **Basic Information** page
 
 .. image:: https://cloud.githubusercontent.com/assets/32463/24877833/950dd53c-1de5-11e7-984f-deb26e8b9482.png
 
-Add your app's **Verification Token** to your python environmental variables
-
-.. code::
-
-  export SLACK_VERIFICATION_TOKEN=xxxxxxxxXxxXxxXxXXXxxXxxx
-
-Add your app's **Signing Secret** to your python environmental variables
+Add your app's **Singing Secret** to your python environmental variables
 
 .. code::
 
