@@ -46,7 +46,11 @@ class SlackServer(Flask):
 
     def verify_signature(self, timestamp, signature):
         req = str.encode('v0:' + str(timestamp) + ':') + request.data
-        request_hash = 'v0='+hmac.new(str.encode(self.signing_secret), req, hashlib.sha256).hexdigest()
+        request_hash = 'v0='+hmac.new(
+            str.encode(self.signing_secret),
+            req, hashlib.sha256
+        ).hexdigest()
+
         return hmac.compare_digest(request_hash, str(signature))
 
     def bind_route(self, server):
