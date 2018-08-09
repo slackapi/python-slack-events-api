@@ -72,16 +72,18 @@ class SlackServer(Flask):
             # Each request comes with request timestamp and request signature
             # emit an error if the timestamp is out of range
             req_timestamp = request.headers.get('X-Slack-Request-Timestamp')
-            if abs(time() - int(req_timestamp)) > 60 * 10:
-                self.emitter.emit('error', Exception('Request timestamp invalid'))
+            if abs(time() - int(req_timestamp)) > 60 * 5:
+                slack_exception = Exception('Invalid request timestamp')
+                self.emitter.emit('error', slack_exception)
                 return make_response("", 200)
 
             # Verify the request signature using the app's signing secret
             # emit an error if the signature can't be verified
             req_signature = request.headers.get('X-Slack-Signature')
             if not self.verify_signature(req_timestamp, req_signature):
-                self.emitter.emit('error', Exception('invalid request signature'))
-                return make_response("", 200)
+                slack_exception = Exception('Invalid request signature')
+                self.emitter.emit('error', slack_exception)
+                return make_response("", 403)
 
             # Parse the Event payload and emit the event to the event listener
             if "event" in event_data:
