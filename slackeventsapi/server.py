@@ -60,15 +60,6 @@ class SlackServer(Flask):
             if request.method == 'GET':
                 return make_response("These are not the slackbots you're looking for.", 404)
 
-            # Parse the request payload into JSON
-            event_data = json.loads(request.data.decode('utf-8'))
-
-            # Echo the URL verification challenge code back to Slack
-            if "challenge" in event_data:
-                return make_response(
-                    event_data.get("challenge"), 200, {"content_type": "application/json"}
-                )
-
             # Each request comes with request timestamp and request signature
             # emit an error if the timestamp is out of range
             req_timestamp = request.headers.get('X-Slack-Request-Timestamp')
@@ -84,6 +75,15 @@ class SlackServer(Flask):
                 slack_exception = Exception('Invalid request signature')
                 self.emitter.emit('error', slack_exception)
                 return make_response("", 403)
+
+            # Parse the request payload into JSON
+            event_data = json.loads(request.data.decode('utf-8'))
+
+            # Echo the URL verification challenge code back to Slack
+            if "challenge" in event_data:
+                return make_response(
+                    event_data.get("challenge"), 200, {"content_type": "application/json"}
+                )
 
             # Parse the Event payload and emit the event to the event listener
             if "event" in event_data:
