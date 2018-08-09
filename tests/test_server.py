@@ -1,21 +1,33 @@
 import json
 from flask import Flask
+import hashlib
+import hmac
 import pytest
 import sys
+import time
 from slackeventsapi import SlackEventAdapter
 from slackeventsapi.version import __version__
 
 
+def create_signature(secret, timestamp, data):
+    req = str.encode('v0:' + str(timestamp) + ':') + data
+    request_signature= 'v0='+hmac.new(
+        str.encode(secret),
+        req, hashlib.sha256
+    ).hexdigest()
+    return request_signature
+
+
 def test_existing_flask():
     valid_flask = Flask(__name__)
-    valid_adapter = SlackEventAdapter("vFO9LARnLI7GflLR8tGqHgdy", "/slack/events", valid_flask)
+    valid_adapter = SlackEventAdapter("SIGNING_SECRET", "/slack/events", valid_flask)
     assert isinstance(valid_adapter, SlackEventAdapter)
 
 
 def test_server_not_flask():
     with pytest.raises(TypeError) as e:
         invalid_flask = "I am not a Flask"
-        SlackEventAdapter("vFO9LARnLI7GflLR8tGqHgdy", "/slack/events", invalid_flask)
+        SlackEventAdapter("SIGNING_SECRET", "/slack/events", invalid_flask)
     assert e.value.args[0] == 'Server must be an instance of Flask'
 
 
@@ -26,33 +38,64 @@ def test_event_endpoint_get(client):
 
 
 def test_url_challenge(client):
+    slack_adapter = SlackEventAdapter("SIGNING_SECRET")
     data = pytest.url_challenge_fixture
+    timestamp = int(time.time())
+    signature = create_signature(slack_adapter.signing_secret, timestamp, data)
+
     res = client.post(
         '/slack/events',
         data=data,
-        content_type='application/json')
+        content_type='application/json',
+        headers={
+            'X-Slack-Request-Timestamp': timestamp,
+            'X-Slack-Signature': signature
+        }
+    )
     assert res.status_code == 200
     assert bytes.decode(res.data) == "valid_challenge_token"
 
 
-def test_valid_event_request(client):
+def test_invalid_request_signature(client):
+    # Verify [package metadata header is set
+    slack_adapter = SlackEventAdapter("SIGNING_SECRET")
+
     data = pytest.reaction_event_fixture
-    res = client.post(
-        '/slack/events',
-        data=data,
-        content_type='application/json')
-    assert res.status_code == 200
+    timestamp = int(time.time())
+    signature = "bad signature"
+
+    with pytest.raises(Exception) as exc_info:
+        res = client.post(
+            '/slack/events',
+            data=data,
+            content_type='application/json',
+            headers={
+                'X-Slack-Request-Timestamp': timestamp,
+                'X-Slack-Signature': signature
+            }
+        )
+
+        assert res.status_code == 404
 
 
 def test_version_header(client):
     # Verify [package metadata header is set
-    package_info = SlackEventAdapter("token").server.package_info
+    slack_adapter = SlackEventAdapter("SIGNING_SECRET")
+    package_info = slack_adapter.server.package_info
 
     data = pytest.reaction_event_fixture
+    timestamp = int(time.time())
+    signature =create_signature(slack_adapter.signing_secret, timestamp, data)
+
     res = client.post(
         '/slack/events',
         data=data,
-        content_type='application/json')
+        content_type='application/json',
+        headers={
+            'X-Slack-Request-Timestamp': timestamp,
+            'X-Slack-Signature': signature
+        }
+    )
 
     assert res.status_code == 200
     assert res.headers["X-Slack-Powered-By"] == package_info
@@ -60,7 +103,7 @@ def test_version_header(client):
 
 def test_server_start(mocker):
     # Verify server started with correct params
-    slack_events_adapter = SlackEventAdapter("token")
+    slack_events_adapter = SlackEventAdapter("SIGNING_SECRET")
     mocker.spy(slack_events_adapter, 'server')
     slack_events_adapter.start(port=3000)
     slack_events_adapter.server.run.assert_called_once_with(debug=False, host='127.0.0.1', port=3000)
