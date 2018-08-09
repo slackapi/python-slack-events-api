@@ -66,7 +66,7 @@ class SlackServer(Flask):
             if abs(time() - int(req_timestamp)) > 60 * 5:
                 slack_exception = Exception('Invalid request timestamp')
                 self.emitter.emit('error', slack_exception)
-                return make_response("", 200)
+                return make_response("", 403)
 
             # Verify the request signature using the app's signing secret
             # emit an error if the signature can't be verified
