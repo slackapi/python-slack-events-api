@@ -9,7 +9,7 @@ from .version import __version__
 
 
 class SlackServer(Flask):
-    def __init__(self, signing_secret, endpoint, emitter, server, **kwargs):
+    def __init__(self, signing_secret, endpoint, emitter, server):
         self.signing_secret = signing_secret
         self.emitter = emitter
         self.endpoint = endpoint
