@@ -73,7 +73,7 @@ Copy your app's **Bot User OAuth Access Token** and add it to your python enviro
 
 Next, go back to your app's **Basic Information** page
 
-.. image:: https://user-images.githubusercontent.com/32463/43932279-fcb89672-9bf7-11e8-96fe-e36b5cf6af26.png
+.. image:: https://user-images.githubusercontent.com/32463/43932347-63b21eca-9bf8-11e8-8b30-0a848c263bb1.png
 
 Add your app's **Signing Secret** to your python environmental variables
 
