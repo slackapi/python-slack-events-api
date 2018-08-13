@@ -1,21 +1,10 @@
 import json
 from flask import Flask
-import hashlib
-import hmac
 import pytest
 import sys
 import time
 from slackeventsapi import SlackEventAdapter
 from slackeventsapi.version import __version__
-
-
-def create_signature(secret, timestamp, data):
-    req = str.encode('v0:' + str(timestamp) + ':') + data
-    request_signature= 'v0='+hmac.new(
-        str.encode(secret),
-        req, hashlib.sha256
-    ).hexdigest()
-    return request_signature
 
 
 def test_existing_flask():
@@ -41,7 +30,7 @@ def test_url_challenge(client):
     slack_adapter = SlackEventAdapter("SIGNING_SECRET")
     data = pytest.url_challenge_fixture
     timestamp = int(time.time())
-    signature = create_signature(slack_adapter.signing_secret, timestamp, data)
+    signature = pytest.create_signature(slack_adapter.signing_secret, timestamp, data)
 
     res = client.post(
         '/slack/events',
@@ -85,7 +74,7 @@ def test_version_header(client):
 
     data = pytest.reaction_event_fixture
     timestamp = int(time.time())
-    signature =create_signature(slack_adapter.signing_secret, timestamp, data)
+    signature =pytest.create_signature(slack_adapter.signing_secret, timestamp, data)
 
     res = client.post(
         '/slack/events',
