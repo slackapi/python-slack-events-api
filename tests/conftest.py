@@ -43,4 +43,5 @@ def pytest_namespace():
 def app():
     adapter = SlackEventAdapter("SIGNING_SECRET")
     app = adapter.server
+    app.testing = True
     return app

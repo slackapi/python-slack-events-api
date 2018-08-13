@@ -4,6 +4,7 @@ import pytest
 import sys
 import time
 from slackeventsapi import SlackEventAdapter
+from slackeventsapi.server import SlackEventAdapterException
 from slackeventsapi.version import __version__
 
 
@@ -53,7 +54,7 @@ def test_invalid_request_signature(client):
     timestamp = int(time.time())
     signature = "bad signature"
 
-    with pytest.raises(Exception) as exc_info:
+    with pytest.raises(SlackEventAdapterException) as excinfo:
         res = client.post(
             '/slack/events',
             data=data,
@@ -64,7 +65,7 @@ def test_invalid_request_signature(client):
             }
         )
 
-        assert res.status_code == 404
+    assert str(excinfo.value) == 'Invalid request signature'
 
 
 def test_version_header(client):

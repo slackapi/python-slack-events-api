@@ -64,7 +64,7 @@ class SlackServer(Flask):
             # emit an error if the timestamp is out of range
             req_timestamp = request.headers.get('X-Slack-Request-Timestamp')
             if abs(time() - int(req_timestamp)) > 60 * 5:
-                slack_exception = Exception('Invalid request timestamp')
+                slack_exception = SlackEventAdapterException('Invalid request timestamp')
                 self.emitter.emit('error', slack_exception)
                 return make_response("", 403)
 
@@ -72,7 +72,7 @@ class SlackServer(Flask):
             # emit an error if the signature can't be verified
             req_signature = request.headers.get('X-Slack-Signature')
             if not self.verify_signature(req_timestamp, req_signature):
-                slack_exception = Exception('Invalid request signature')
+                slack_exception = SlackEventAdapterException('Invalid request signature')
                 self.emitter.emit('error', slack_exception)
                 return make_response("", 403)
 
@@ -92,3 +92,14 @@ class SlackServer(Flask):
                 response = make_response("", 200)
                 response.headers['X-Slack-Powered-By'] = self.package_info
                 return response
+
+
+class SlackEventAdapterException(Exception):
+    """
+    Base exception for all errors raised by the SlackClient library
+    """
+    def __init__(self, msg=None):
+        if msg is None:
+            # default error message
+            msg = "An error occurred in the SlackEventsApiAdapter library"
+        super(SlackEventAdapterException, self).__init__(msg)
