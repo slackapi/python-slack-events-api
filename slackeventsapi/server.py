@@ -44,7 +44,6 @@ class SlackServer(Flask):
 
         return " ".join(ua_string)
 
-
     def verify_signature(self, timestamp, signature):
         # Verify the request signature of the request sent from Slack
         # Generate a new hash using the app's signing secret and request data
@@ -73,7 +72,6 @@ class SlackServer(Flask):
                 for x, y in zip(request_hash, signature):
                     result |= ord(x) ^ ord(y)
             return result == 0
-
 
     def bind_route(self, server):
         @server.route(self.endpoint, methods=['GET', 'POST'])
