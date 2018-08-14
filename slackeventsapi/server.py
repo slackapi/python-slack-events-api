@@ -44,14 +44,36 @@ class SlackServer(Flask):
 
         return " ".join(ua_string)
 
+
     def verify_signature(self, timestamp, signature):
+        # Verify the request signature of the request sent from Slack
+        # Generate a new hash using the app's signing secret and request data
         req = str.encode('v0:' + str(timestamp) + ':') + request.data
-        request_hash = 'v0='+hmac.new(
+        request_hash = 'v0=' + hmac.new(
             str.encode(self.signing_secret),
             req, hashlib.sha256
         ).hexdigest()
 
-        return hmac.compare_digest(request_hash, str(signature))
+        # Compare the generated hash and incoming request signature
+        if hasattr(hmac, "compare_digest"):
+            return hmac.compare_digest(request_hash, signature)
+        else:
+            # Python 2.7.6 doesn't support compare_digest
+            # https://bugs.python.org/issue21306
+            # It's recommended to use Python 2.7.7+
+
+            # So, we'll compare the signatures explicitly
+            if len(request_hash) != len(signature):
+                return False
+            result = 0
+            if isinstance(request_hash, bytes) and isinstance(signature, bytes):
+                for x, y in zip(request_hash, signature):
+                    result |= x ^ y
+            else:
+                for x, y in zip(request_hash, signature):
+                    result |= ord(x) ^ ord(y)
+            return result == 0
+
 
     def bind_route(self, server):
         @server.route(self.endpoint, methods=['GET', 'POST'])
