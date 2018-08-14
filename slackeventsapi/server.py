@@ -51,7 +51,7 @@ class SlackServer(Flask):
         # Compare the generated hash and incoming request signature
         # Python 2.7.6 doesn't support compare_digest
         # It's recommended to use Python 2.7.7+
-        # See https://docs.python.org/2/whatsnew/2.7.html#pep-466-network-security-enhancements-for-python-2-7
+        # noqa See https://docs.python.org/2/whatsnew/2.7.html#pep-466-network-security-enhancements-for-python-2-7
         if hasattr(hmac, "compare_digest"):
             req = str.encode('v0:' + str(timestamp) + ':') + request.data
             request_hash = 'v0=' + hmac.new(
