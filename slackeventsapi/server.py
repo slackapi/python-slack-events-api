@@ -47,21 +47,30 @@ class SlackServer(Flask):
     def verify_signature(self, timestamp, signature):
         # Verify the request signature of the request sent from Slack
         # Generate a new hash using the app's signing secret and request data
-        req = str.encode('v0:' + str(timestamp) + ':') + request.data
-        request_hash = 'v0=' + hmac.new(
-            str.encode(self.signing_secret),
-            req, hashlib.sha256
-        ).hexdigest()
 
         # Compare the generated hash and incoming request signature
+        # Python 2.7.6 doesn't support compare_digest
+        # It's recommended to use Python 2.7.7+
+        # See https://docs.python.org/2/whatsnew/2.7.html#pep-466-network-security-enhancements-for-python-2-7
         if hasattr(hmac, "compare_digest"):
-            return hmac.compare_digest(request_hash, signature)
+            req = str.encode('v0:' + str(timestamp) + ':') + request.data
+            request_hash = 'v0=' + hmac.new(
+                str.encode(self.signing_secret),
+                req, hashlib.sha256
+            ).hexdigest()
+            # Compare byte strings for Python 2
+            if (sys.version_info[0] == 2):
+                return hmac.compare_digest(bytes(request_hash), bytes(signature))
+            else:
+                return hmac.compare_digest(request_hash, signature)
         else:
-            # Python 2.7.6 doesn't support compare_digest
-            # https://bugs.python.org/issue21306
-            # It's recommended to use Python 2.7.7+
-
             # So, we'll compare the signatures explicitly
+            req = str.encode('v0:' + str(timestamp) + ':') + request.data
+            request_hash = 'v0=' + hmac.new(
+                str.encode(self.signing_secret),
+                req, hashlib.sha256
+            ).hexdigest()
+
             if len(request_hash) != len(signature):
                 return False
             result = 0
