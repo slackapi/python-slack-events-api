@@ -94,7 +94,9 @@ def test_invalid_request_timestamp(client):
 def test_compare_digest_fallback(client, monkeypatch):
     # Verify [package metadata header is set
     slack_adapter = SlackEventAdapter("SIGNING_SECRET")
-    monkeypatch.delattr(hmac, 'compare_digest')
+
+    if hasattr(hmac, "compare_digest"):
+        monkeypatch.delattr(hmac, 'compare_digest')
 
     data = pytest.reaction_event_fixture
     timestamp = int(time.time())
