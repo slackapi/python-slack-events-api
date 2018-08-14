@@ -120,7 +120,7 @@ def test_version_header(client):
 
     data = pytest.reaction_event_fixture
     timestamp = int(time.time())
-    signature =pytest.create_signature(slack_adapter.signing_secret, timestamp, data)
+    signature = pytest.create_signature(slack_adapter.signing_secret, timestamp, data)
 
     res = client.post(
         '/slack/events',
