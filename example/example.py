@@ -3,12 +3,12 @@ from slackclient import SlackClient
 import os
 
 # Our app's Slack Event Adapter for receiving actions via the Events API
-SLACK_VERIFICATION_TOKEN = os.environ["SLACK_VERIFICATION_TOKEN"]
-slack_events_adapter = SlackEventAdapter(SLACK_VERIFICATION_TOKEN, "/slack/events")
+slack_signing_secret = os.environ["SLACK_SIGNING_SECRET"]
+slack_events_adapter = SlackEventAdapter(slack_signing_secret, "/slack/events")
 
 # Create a SlackClient for your bot to use for Web API requests
-SLACK_BOT_TOKEN = os.environ["SLACK_BOT_TOKEN"]
-CLIENT = SlackClient(SLACK_BOT_TOKEN)
+slack_bot_token = os.environ["SLACK_BOT_TOKEN"]
+slack_client = SlackClient(slack_bot_token)
 
 # Example responder to greetings
 @slack_events_adapter.on("message")
@@ -18,7 +18,7 @@ def handle_message(event_data):
     if message.get("subtype") is None and "hi" in message.get('text'):
         channel = message["channel"]
         message = "Hello <@%s>! :tada:" % message["user"]
-        CLIENT.api_call("chat.postMessage", channel=channel, text=message)
+        slack_client.api_call("chat.postMessage", channel=channel, text=message)
 
 
 # Example reaction emoji echo
@@ -28,7 +28,12 @@ def reaction_added(event_data):
     emoji = event["reaction"]
     channel = event["item"]["channel"]
     text = ":%s:" % emoji
-    CLIENT.api_call("chat.postMessage", channel=channel, text=text)
+    slack_client.api_call("chat.postMessage", channel=channel, text=text)
+
+# Error events
+@slack_events_adapter.on("error")
+def error_handler(err):
+    print("ERROR: " + str(err))
 
 # Once we have our event listeners configured, we can start the
 # Flask server with the default `/events` endpoint on port 3000

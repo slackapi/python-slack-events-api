@@ -73,13 +73,13 @@ Copy your app's **Bot User OAuth Access Token** and add it to your python enviro
 
 Next, go back to your app's **Basic Information** page
 
-.. image:: https://cloud.githubusercontent.com/assets/32463/24877833/950dd53c-1de5-11e7-984f-deb26e8b9482.png
+.. image:: https://user-images.githubusercontent.com/32463/43932347-63b21eca-9bf8-11e8-8b30-0a848c263bb1.png
 
-Add your app's **Verification Token** to your python environmental variables
+Add your app's **Signing Secret** to your python environmental variables
 
 .. code::
 
-  export SLACK_VERIFICATION_TOKEN=xxxxxxxxXxxXxxXxXXXxxXxxx
+  export SLACK_SIGNING_SECRET=xxxxxxxxXxxXxxXxXXXxxXxxx
 
 
 **🤖  Start ngrok**
