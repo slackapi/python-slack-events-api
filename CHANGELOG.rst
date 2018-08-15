@@ -1,6 +1,14 @@
 Changelog
 ============
 
+v2.0.0 (2018-08-15)
+---------------------
+
+Added request signing to for added security.
+See https://api.slack.com/docs/verifying-requests-from-slack
+
+NOTE: This change requires apps to use `Signing Secret` rather than `Verification Token`
+
 v1.1.0 (2018-01-19)
 ---------------------
 
