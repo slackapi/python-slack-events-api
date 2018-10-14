@@ -1,4 +1,5 @@
 from flask import Flask, request, make_response
+import inspect
 import json
 import platform
 import sys
@@ -117,7 +118,15 @@ class SlackServer(Flask):
             # Parse the Event payload and emit the event to the event listener
             if "event" in event_data:
                 event_type = event_data["event"]["type"]
-                self.emitter.emit(event_type, event_data)
+                event_args = [event_data]
+
+                listeners = self.emitter.listeners(event_type)
+                if listeners:
+                    argspec = inspect.getargspec(listeners[0])
+                    if len(argspec[0]) == 2:
+                        event_args = [event_data, request]
+
+                self.emitter.emit(event_type, *event_args)
                 response = make_response("", 200)
                 response.headers['X-Slack-Powered-By'] = self.package_info
                 return response
