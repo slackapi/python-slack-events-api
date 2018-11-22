@@ -88,8 +88,8 @@ Create a Slack Event Adapter for receiving actions via the Events API
 
   # Create an event listener for "reaction_added" events and print the emoji name
   @slack_events_adapter.on("reaction_added")
-  def reaction_added(event):
-    emoji = event.get("reaction")
+  def reaction_added(event_data):
+    emoji = event_data["event"]["reaction"]
     print(emoji)
 
 
@@ -123,8 +123,8 @@ Create a Slack Event Adapter for receiving actions via the Events API
 
   # Create an event listener for "reaction_added" events and print the emoji name
   @slack_events_adapter.on("reaction_added")
-  def reaction_added(event):
-    emoji = event.get("reaction")
+  def reaction_added(event_data):
+    emoji = event_data["event"]["reaction"]
     print(emoji)
 
 
