@@ -3,7 +3,7 @@ ipdb==0.9.3
 ipython==4.1.2
 pdbpp==0.8.3
 pytest>=3.2.0
-pytest-flask==0.10.0
+pytest-flask>=0.14.0
 pytest-mock>=1.6.3
 pytest-cov==2.5.1
 pytest-pythonpath==0.7.1
