@@ -57,7 +57,7 @@ class SlackServer(Flask):
             str.encode(self.signing_secret),
             req, hashlib.sha256
         ).hexdigest()
-        
+
         if hasattr(hmac, "compare_digest"):
             # Compare byte strings for Python 2
             if (sys.version_info[0] == 2):
@@ -121,6 +121,7 @@ class SlackEventAdapterException(Exception):
     """
     Base exception for all errors raised by the SlackClient library
     """
+
     def __init__(self, msg=None):
         if msg is None:
             # default error message
