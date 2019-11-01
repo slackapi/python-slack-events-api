@@ -146,13 +146,13 @@ SlackClient Web API client.
 🤔  Support
 -----------
 
-Need help? Join `Bot Developer Hangout`_ and talk to us in `#slack-api`_.
+Need help? Join `Slack Community`_ and talk to us in `#slack-api`_.
 
 You can also `create an Issue`_ right here on GitHub.
 
 .. _Events API: https://api.slack.com/events-api
 .. _create a Slack App: https://api.slack.com/apps/new
 .. _Event Subscriptions: https://api.slack.com/events-api#subscriptions
-.. _Bot Developer Hangout: http://dev4slack.xoxco.com/
+.. _Slack Community: http://slackcommunity.com/
 .. _#slack-api: https://dev4slack.slack.com/messages/slack-api/
 .. _create an Issue: https://github.com/slackapi/python-slack-events-api/issues/new
