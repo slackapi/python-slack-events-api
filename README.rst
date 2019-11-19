@@ -48,7 +48,7 @@ user has authorized your app.
 🤖  Development workflow:
 ===========================
 
-(1) Create a Slack app on https://api.slack.com/apps/
+(1) Create a Slack app on https://api.slack.com/apps
 (2) Add a `bot user` for your app
 (3) Start the example app on your **Request URL** endpoint
 (4) Start ngrok and copy the **HTTPS** URL
