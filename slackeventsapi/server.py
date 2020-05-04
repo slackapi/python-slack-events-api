@@ -54,7 +54,7 @@ class SlackServer(Flask):
         # It's recommended to use Python 2.7.7+
         # noqa See https://docs.python.org/2/whatsnew/2.7.html#pep-466-network-security-enhancements-for-python-2-7
         if hasattr(hmac, "compare_digest"):
-            req = str.encode('v0:' + str(timestamp) + ':') + request.data
+            req = str.encode('v0:' + str(timestamp) + ':') + request.get_data()
             request_hash = 'v0=' + hmac.new(
                 str.encode(self.signing_secret),
                 req, hashlib.sha256
@@ -66,7 +66,7 @@ class SlackServer(Flask):
                 return hmac.compare_digest(request_hash, signature)
         else:
             # So, we'll compare the signatures explicitly
-            req = str.encode('v0:' + str(timestamp) + ':') + request.data
+            req = str.encode('v0:' + str(timestamp) + ':') + request.get_data()
             request_hash = 'v0=' + hmac.new(
                 str.encode(self.signing_secret),
                 req, hashlib.sha256

@@ -48,7 +48,7 @@ user has authorized your app.
 🤖  Development workflow:
 ===========================
 
-(1) Create a Slack app on https://api.slack.com/apps/
+(1) Create a Slack app on https://api.slack.com/apps
 (2) Add a `bot user` for your app
 (3) Start the example app on your **Request URL** endpoint
 (4) Start ngrok and copy the **HTTPS** URL
@@ -89,8 +89,7 @@ Create a Slack Event Adapter for receiving actions via the Events API
   # Create an event listener for "reaction_added" events and print the emoji name
   @slack_events_adapter.on("reaction_added")
   def reaction_added(event_data):
-    event = event_data['event']
-    emoji = event.get("reaction")
+    emoji = event_data["event"]["reaction"]
     print(emoji)
 
 
@@ -125,8 +124,7 @@ Create a Slack Event Adapter for receiving actions via the Events API
   # Create an event listener for "reaction_added" events and print the emoji name
   @slack_events_adapter.on("reaction_added")
   def reaction_added(event_data):
-    event = event_data['event']
-    emoji = event.get("reaction")
+    emoji = event_data["event"]["reaction"]
     print(emoji)
 
 
@@ -148,13 +146,13 @@ SlackClient Web API client.
 🤔  Support
 -----------
 
-Need help? Join `Bot Developer Hangout`_ and talk to us in `#slack-api`_.
+Need help? Join `Slack Community`_ and talk to us in `#slack-api`_.
 
 You can also `create an Issue`_ right here on GitHub.
 
 .. _Events API: https://api.slack.com/events-api
 .. _create a Slack App: https://api.slack.com/apps/new
 .. _Event Subscriptions: https://api.slack.com/events-api#subscriptions
-.. _Bot Developer Hangout: http://dev4slack.xoxco.com/
+.. _Slack Community: http://slackcommunity.com/
 .. _#slack-api: https://dev4slack.slack.com/messages/slack-api/
 .. _create an Issue: https://github.com/slackapi/python-slack-events-api/issues/new
