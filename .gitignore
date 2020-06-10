@@ -12,3 +12,6 @@ tests/.cache
 .coverage
 .cache
 .DS_Store
+.vscode/
+.eggs/
+build/
