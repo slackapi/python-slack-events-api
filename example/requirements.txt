@@ -1,2 +1,2 @@
-slackclient>=2
-slackeventsapi>=2
+slackclient>=2.7.1
+slackeventsapi>=2.1.0
