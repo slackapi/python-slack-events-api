@@ -3,7 +3,7 @@ Example Slack events API bot
 
 This example app shows how easy it is to implement the Slack Events API Adapter
 to receive Slack Events and respond to
-messages using Slack's Web API via python-slackclient.
+messages using Slack's Web API via python-slackclient v2.
 
 🤖  Setup and running the app
 ------------------------------

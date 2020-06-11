@@ -1,5 +1,5 @@
 from slackeventsapi import SlackEventAdapter
-from slackclient import SlackClient
+import slack
 import os
 
 # Our app's Slack Event Adapter for receiving actions via the Events API
@@ -8,7 +8,7 @@ slack_events_adapter = SlackEventAdapter(slack_signing_secret, "/slack/events")
 
 # Create a SlackClient for your bot to use for Web API requests
 slack_bot_token = os.environ["SLACK_BOT_TOKEN"]
-slack_client = SlackClient(slack_bot_token)
+slack_client = slack.WebClient(slack_bot_token)
 
 # Example responder to greetings
 @slack_events_adapter.on("message")
@@ -18,7 +18,7 @@ def handle_message(event_data):
     if message.get("subtype") is None and "hi" in message.get('text'):
         channel = message["channel"]
         message = "Hello <@%s>! :tada:" % message["user"]
-        slack_client.api_call("chat.postMessage", channel=channel, text=message)
+        slack_client.chat_postMessage(channel=channel, text=message)
 
 
 # Example reaction emoji echo
@@ -28,7 +28,7 @@ def reaction_added(event_data):
     emoji = event["reaction"]
     channel = event["item"]["channel"]
     text = ":%s:" % emoji
-    slack_client.api_call("chat.postMessage", channel=channel, text=text)
+    slack_client.chat_postMessage(channel=channel, text=text)
 
 # Error events
 @slack_events_adapter.on("error")
