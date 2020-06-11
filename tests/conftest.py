@@ -38,10 +38,13 @@ def pytest_namespace():
         'create_signature': create_signature
     }
 
+@pytest.fixture
+def adapter():
+    return SlackEventAdapter("SIGNING_SECRET")
 
 @pytest.fixture
 def app():
-    adapter = SlackEventAdapter("SIGNING_SECRET")
-    app = adapter.server
+    events_adapter = adapter()
+    app = events_adapter.server
     app.testing = True
     return app
