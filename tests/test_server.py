@@ -1,12 +1,11 @@
-import json
-from flask import Flask
-import pytest
-import sys
 import hmac
 import time
+
+import pytest
+from flask import Flask, Blueprint, make_response
+
 from slackeventsapi import SlackEventAdapter
 from slackeventsapi.server import SlackEventAdapterException
-from slackeventsapi.version import __version__
 
 
 def test_existing_flask():
@@ -19,8 +18,18 @@ def test_server_not_flask():
     with pytest.raises(TypeError) as e:
         invalid_flask = "I am not a Flask"
         SlackEventAdapter("SIGNING_SECRET", "/slack/events", invalid_flask)
-    assert e.value.args[0] == 'Server must be an instance of Flask'
+    assert e.value.args[0] == 'Server must be an instance of Flask or Blueprint'
 
+
+def test_blueprint_server():
+    simple_page = Blueprint('simple_page', __name__)
+    @simple_page.route('/', defaults={'page': 'index'})
+    @simple_page.route('/<page>')
+    def show(page):
+        return make_response("This is page " + page)
+
+    valid_adapter = SlackEventAdapter("SIGNING_SECRET", "/slack/events", simple_page)
+    assert isinstance(valid_adapter, SlackEventAdapter)
 
 def test_event_endpoint_get(client):
     # GET on '/slack/events' should 404
@@ -74,7 +83,7 @@ def test_invalid_request_timestamp(client):
     slack_adapter = SlackEventAdapter("SIGNING_SECRET")
 
     data = pytest.reaction_event_fixture
-    timestamp = int(time.time()+1000)
+    timestamp = int(time.time() + 1000)
     signature = "bad timestamp"
 
     with pytest.raises(SlackEventAdapterException) as excinfo:
@@ -100,7 +109,7 @@ def test_compare_digest_fallback(client, monkeypatch):
 
     data = pytest.reaction_event_fixture
     timestamp = int(time.time())
-    signature =pytest.create_signature(slack_adapter.signing_secret, timestamp, data)
+    signature = pytest.create_signature(slack_adapter.signing_secret, timestamp, data)
 
     res = client.post(
         '/slack/events',

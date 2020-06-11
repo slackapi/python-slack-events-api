@@ -1,4 +1,4 @@
-from flask import Flask, request, make_response
+from flask import Flask, request, make_response, Blueprint
 import json
 import platform
 import sys
@@ -18,10 +18,10 @@ class SlackServer(Flask):
         # If a server is passed in, bind the event handler routes to it,
         # otherwise create a new Flask instance.
         if server:
-            if isinstance(server, Flask):
+            if isinstance(server, Flask) or isinstance(server, Blueprint):
                 self.bind_route(server)
             else:
-                raise TypeError("Server must be an instance of Flask")
+                raise TypeError("Server must be an instance of Flask or Blueprint")
         else:
             Flask.__init__(self, __name__)
             self.bind_route(self)
