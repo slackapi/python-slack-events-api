@@ -3,26 +3,35 @@ Example Slack events API bot
 
 This example app shows how easy it is to implement the Slack Events API Adapter
 to receive Slack Events and respond to
-messages using Slack's Web API via python-slackclient v2.
+messages using Slack's Web API via python-slackclient.
 
 🤖  Setup and running the app
 ------------------------------
 
 **Set up your Python environment:**
 
-We're using venv (or virtualenv) to keep the dependencies and environmental variables specific to this app. See `venv`_ docs for more info.
+We're using virtualenv to keep the dependencies and environmental variables specific to this app. See `virtualenv`_ docs for more info.
 
-.. _venv: https://docs.python.org/3/library/venv.html
+.. _virtualenv: https://virtualenv.pypa.io
+
+This example app works best in Python 2.7. If 2.7 is your default version, create a virtual environment by running:
 
 .. code::
 
-  python -m venv env
+  virtualenv env
+
+Otherwise, if Python 3+ is your default, specify the path to your 2.7 instance:
+
+.. code::
+
+  virtualenv -p /your/path/to/python2 env
 
 Then initialize the virtualenv:
 
 .. code::
 
   source env/bin/activate
+
 
 **Install the app's dependencies:**
 
@@ -60,7 +69,7 @@ Copy your app's **Bot User OAuth Access Token** and add it to your python enviro
 
 .. code::
 
-  export SLACK_BOT_TOKEN=xoxb-111-222-xxxXXxxXXxXXxXXXXxxxX
+  export SLACK_BOT_TOKEN=xxxXXxxXXxXXxXXXXxxxX.xXxxxXxxxx
 
 Next, go back to your app's **Basic Information** page
 
