@@ -18,7 +18,7 @@ def test_server_not_flask():
     with pytest.raises(TypeError) as e:
         invalid_flask = "I am not a Flask"
         SlackEventAdapter("SIGNING_SECRET", "/slack/events", invalid_flask)
-    assert e.value.args[0] == 'Server must be an instance of Flask or Blueprint'
+    assert e.value.args[0] == 'Server must be an instance of Flask, Blueprint, or LocalProxy'
 
 
 def test_blueprint_server():
