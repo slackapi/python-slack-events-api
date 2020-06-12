@@ -20,34 +20,40 @@ def find_version(*file_paths):
                               version_file, re.M)
     if version_match:
         return version_match.group(1)
-    raise RuntimeError("Unable to find version string.")
+    raise RuntimeError('Unable to find version string.')
+
+with open("README.rst", "r") as fh:
+    long_description = fh.read()
 
 setup(name='slackeventsapi',
       version=find_version('slackeventsapi', 'version.py'),
-      description='Python Slack Events API adapter',
+      description='Python Slack Events API adapter for Flask',
       url='http://github.com/slackapi/python-slack-events-api',
       author='Slack Technologies, Inc.',
       author_email='opensource@slack.com',
       license='MIT',
       packages=['slackeventsapi'],
+      long_description_content_type='text/x-rst',
+      long_description=long_description,
       install_requires=[
-        'flask',
-        'pyee',
-        'requests',
-        'six',
+          'flask>=1,<2',
+          'pyee>=7,<8',
+          'itsdangerous<2', # for Python 2.7
+          'Jinja2<3', # for Python 2.7
+          'MarkupSafe<2', # for Python 2.7
       ],
       classifiers=[
-          "Development Status :: 5 - Production/Stable",
-          "Intended Audience :: Developers",
-          "Topic :: Communications :: Chat",
-          "Topic :: System :: Networking",
-          "Topic :: Office/Business",
-          "License :: OSI Approved :: MIT License",
-          "Programming Language :: Python",
-          "Programming Language :: Python :: 2.7",
-          "Programming Language :: Python :: 3.5",
-          "Programming Language :: Python :: 3.6",
-          "Programming Language :: Python :: 3.7",
-          "Programming Language :: Python :: 3.8",
+          'Development Status :: 5 - Production/Stable',
+          'Intended Audience :: Developers',
+          'Topic :: Communications :: Chat',
+          'Topic :: System :: Networking',
+          'Topic :: Office/Business',
+          'License :: OSI Approved :: MIT License',
+          'Programming Language :: Python',
+          'Programming Language :: Python :: 2.7',
+          'Programming Language :: Python :: 3.5',
+          'Programming Language :: Python :: 3.6',
+          'Programming Language :: Python :: 3.7',
+          'Programming Language :: Python :: 3.8',
       ],
       zip_safe=False)

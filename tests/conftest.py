@@ -30,21 +30,18 @@ def event_with_bad_token():
     return json.dumps(event_data)
 
 
-def pytest_namespace():
-    return {
-        'reaction_event_fixture': load_event_fixture('reaction_added'),
-        'url_challenge_fixture': load_event_fixture('url_challenge'),
-        'bad_token_fixture': event_with_bad_token(),
-        'create_signature': create_signature
-    }
+def pytest_configure():
+    pytest.reaction_event_fixture = load_event_fixture('reaction_added')
+    pytest.url_challenge_fixture = load_event_fixture('url_challenge')
+    pytest.bad_token_fixture = event_with_bad_token()
+    pytest.create_signature = create_signature
 
 @pytest.fixture
 def adapter():
     return SlackEventAdapter("SIGNING_SECRET")
 
 @pytest.fixture
-def app():
-    events_adapter = adapter()
-    app = events_adapter.server
+def app(adapter):
+    app = adapter.server
     app.testing = True
     return app

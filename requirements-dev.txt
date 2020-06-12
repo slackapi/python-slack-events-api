@@ -1,12 +1,8 @@
-coveralls==1.1
-ipdb==0.9.3
-ipython==4.1.2
-pdbpp==0.10.2
-pytest>=3.2.0,<4.0.0
-pytest-flask==0.10.0
-pytest-mock>=1.6.3
-pytest-cov==2.5.1
-pytest-pythonpath==0.7.1
-testfixtures==5.3.1
-tox==2.9.1
-werkzeug==0.16.1
+coveralls<2
+pytest<6 # python 2.7 requires pytest 4
+pytest-flask<2
+pytest-mock<2
+pytest-cov<3
+pytest-pythonpath<0.8
+testfixtures<7
+werkzeug<2
