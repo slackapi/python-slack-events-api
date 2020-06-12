@@ -1,6 +1,18 @@
 Changelog
 ============
 
+v2.2.0rc1 (2020-06-12)
+---------------------
+
+https://github.com/slackapi/python-slack-events-api/milestone/1?closed=1
+
+- Add Blueprint (application factories) support #56 #69 - thanks @maryum375 @psykzz @seratch
+- Add current_app (LocalProxy) support #66 #71 - thanks @tstoco @seratch
+- Apply various improvement to the PyPI packaging #47 #70 #72 - thanks @seratch
+- Drop Python 2.7.6 support #53 #68 - thanks @Roach @seratch
+- Refactor duplicated code #59 - thanks @vvatelot
+- Add more tests #37 #40 - thanks @datashaman
+
 v2.1.0 (2018-12-12)
 ---------------------
 
