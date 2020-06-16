@@ -1,10 +1,13 @@
-from flask import Flask, request, make_response, Blueprint
+import hashlib
+import hmac
 import json
 import platform
 import sys
-import hmac
-import hashlib
 from time import time
+
+from flask import Flask, request, make_response, Blueprint
+from werkzeug.local import LocalProxy
+
 from .version import __version__
 
 
@@ -18,10 +21,10 @@ class SlackServer(Flask):
         # If a server is passed in, bind the event handler routes to it,
         # otherwise create a new Flask instance.
         if server:
-            if isinstance(server, Flask) or isinstance(server, Blueprint):
+            if isinstance(server, (Flask, Blueprint, LocalProxy)):
                 self.bind_route(server)
             else:
-                raise TypeError("Server must be an instance of Flask or Blueprint")
+                raise TypeError("Server must be an instance of Flask, Blueprint, or LocalProxy")
         else:
             Flask.__init__(self, __name__)
             self.bind_route(self)
