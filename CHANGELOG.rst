@@ -1,7 +1,7 @@
 Changelog
 ============
 
-v2.2.0rc1 (2020-06-16)
+v2.2.0 (2020-06-23)
 ---------------------
 
 https://github.com/slackapi/python-slack-events-api/milestone/1?closed=1
