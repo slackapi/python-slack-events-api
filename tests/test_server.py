@@ -56,6 +56,32 @@ def test_url_challenge(client):
     assert bytes.decode(res.data) == "valid_challenge_token"
 
 
+def test_no_request_timestamp_header(client):
+    data = pytest.reaction_event_fixture
+    with pytest.raises(SlackEventAdapterException) as excinfo:
+        res = client.post(
+            '/slack/events',
+            data=data,
+            content_type='application/json',
+            headers={}
+        )
+    assert str(excinfo.value) == 'Invalid request timestamp'
+
+def test_no_request_signature_header(client):
+    data = pytest.reaction_event_fixture
+    timestamp = int(time.time())
+    with pytest.raises(SlackEventAdapterException) as excinfo:
+        res = client.post(
+            '/slack/events',
+            data=data,
+            content_type='application/json',
+            headers={
+                'X-Slack-Request-Timestamp': timestamp, # valid
+            }
+        )
+    assert str(excinfo.value) == 'Invalid request signature'
+
+
 def test_invalid_request_signature(client):
     # Verify [package metadata header is set
     slack_adapter = SlackEventAdapter("SIGNING_SECRET")
