@@ -1,6 +1,13 @@
 Changelog
 ============
 
+v2.2.1 (2020-07-28)
+---------------------
+
+https://github.com/slackapi/python-slack-events-api/milestone/2?closed=1
+
+- Better error handling for requests lacking required headers #75 #76 - thanks @SpamapS @seratch
+
 v2.2.0 (2020-06-23)
 ---------------------
 
