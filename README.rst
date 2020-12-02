@@ -20,6 +20,14 @@ This adapter enhances and simplifies Slack's Events API by incorporating useful 
 
 .. _blog post which explains how: https://medium.com/@SlackAPI/enhancing-slacks-events-api-7535827829ab
 
+⚠️  Important Notice
+---------------------
+
+If you use this library for Events API handling, you may need to use threads for stable event acknowledgement. See https://github.com/slackapi/python-slack-events-api/issues/84 for details.
+
+If you're looking for the best recommended library at this point, check Bolt for Python: https://github.com/slackapi/bolt-python
+
+The framework covers not only Events API but also all the latest Slack Platform features.
 
 🤖  Installation
 ----------------
