@@ -16,3 +16,4 @@ tests/.cache
 .eggs/
 build/
 .python-version
+venv/
