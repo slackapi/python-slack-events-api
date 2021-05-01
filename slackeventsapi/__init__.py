@@ -7,11 +7,10 @@ class SlackEventAdapter(BaseEventEmitter):
     # If no endpoint is provided, default to listening on '/slack/events'
     def __init__(self, signing_secret, endpoint="/slack/events", server=None, **kwargs):
         BaseEventEmitter.__init__(self)
-        if signing_secret:
-            self.signing_secret = signing_secret
-        else:
-            raise ValueError(f'Got {type(signing_secret)} instead of the Slack signing secret token. Check the first '
-                             f'parameter.')
+        if signing_secret is None:
+            message = "signing_secret is required but you passed None in the first argument"
+            raise ValueError(message)
+        self.signing_secret = signing_secret
         self.server = SlackServer(signing_secret, endpoint, self, server, **kwargs)
 
     def start(self, host='127.0.0.1', port=None, debug=False, **kwargs):
