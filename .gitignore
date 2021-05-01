@@ -17,3 +17,5 @@ tests/.cache
 build/
 .python-version
 venv/
+.venv/
+.env/
