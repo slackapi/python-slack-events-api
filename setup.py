@@ -9,9 +9,7 @@ here = os.path.abspath(os.path.dirname(__file__))
 # Why read it, and not import?
 # see https://groups.google.com/d/topic/pypa-dev/0PkjVpcxTzQ/discussion
 def find_version(*file_paths):
-    # Open in Latin-1 so that we avoid encoding errors.
-    # Use codecs.open for Python 2 compatibility
-    with codecs.open(os.path.join(here, *file_paths), 'r', 'latin1') as f:
+    with open(os.path.join(here, *file_paths), 'r') as f:
         version_file = f.read()
 
     # The version line must have the form
@@ -38,9 +36,6 @@ setup(name='slackeventsapi',
       install_requires=[
           'flask>=1,<2',
           'pyee>=7,<8',
-          'itsdangerous<2', # for Python 2.7
-          'Jinja2<3', # for Python 2.7
-          'MarkupSafe<2', # for Python 2.7
       ],
       classifiers=[
           'Development Status :: 5 - Production/Stable',
@@ -50,7 +45,6 @@ setup(name='slackeventsapi',
           'Topic :: Office/Business',
           'License :: OSI Approved :: MIT License',
           'Programming Language :: Python',
-          'Programming Language :: Python :: 2.7',
           'Programming Language :: Python :: 3.5',
           'Programming Language :: Python :: 3.6',
           'Programming Language :: Python :: 3.7',
