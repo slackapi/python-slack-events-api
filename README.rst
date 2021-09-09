@@ -3,8 +3,8 @@ Slack Events API adapter for Python
 
 .. image:: https://badge.fury.io/py/slackeventsapi.svg
   :target: https://pypi.org/project/slackeventsapi/
-.. image:: https://travis-ci.org/slackapi/python-slack-events-api.svg?branch=main
-  :target: https://travis-ci.org/slackapi/python-slack-events-api
+.. image:: https://github.com/slackapi/python-slack-events-api/actions/workflows/ci-build.yml/badge.svg
+  :target: https://github.com/slackapi/python-slack-events-api/actions/workflows/ci-build.yml
 .. image:: https://codecov.io/gh/slackapi/python-slack-events-api/branch/main/graph/badge.svg
   :target: https://codecov.io/gh/slackapi/python-slack-events-api
 
