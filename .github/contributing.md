@@ -41,9 +41,9 @@ For your contribution to be accepted:
 - [x] Commits should be atomic and messages must be descriptive. Related issues should be mentioned by Issue number.
 
 If the contribution doesn't meet the above criteria, a maintainer should discuss it with you. You can
-continue improve a Pull Request by adding commits to the branch from which the PR was created.
+continue to improve a Pull Request by adding commits to the branch from which the PR was created.
 
-[Interested in knowing more about about pull requests at Slack?](https://slack.engineering/on-empathy-pull-requests-979e4257d158#.awxtvmb2z)
+[Interested in knowing more about pull requests at Slack?](https://slack.engineering/on-empathy-pull-requests-979e4257d158#.awxtvmb2z)
 
 ## Creating a Pull Request
 
@@ -53,5 +53,5 @@ continue improve a Pull Request by adding commits to the branch from which the P
 3.  :herb: Create a new branch and check it out.
 4.  :crystal_ball: Make your changes and commit them locally. Magic happens here!
 5.  :arrow_heading_up: Push your new branch to your fork. (e.g. `git push username fix-issue-16`).
-6.  :inbox_tray: Open a Pull Request on github.com from your new branch on your fork to `master` in this
+6.  :inbox_tray: Open a Pull Request on github.com from your new branch on your fork to `main` (`v2` for 2.x series updates) in this
     repository.

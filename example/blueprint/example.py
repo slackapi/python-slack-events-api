@@ -1,15 +1,5 @@
-# ------------------
-# Only for running this script here
-import logging
-import sys
-from os.path import dirname
-
-sys.path.insert(1, f"{dirname(__file__)}/../..")
-logging.basicConfig(level=logging.DEBUG)
-# ------------------
-
 from slackeventsapi import SlackEventAdapter
-from slack import WebClient
+from slack_sdk.web import WebClient
 import os
 
 from flask import Flask, Blueprint
@@ -22,6 +12,16 @@ slack_events_adapter = SlackEventAdapter(slack_signing_secret, "/slack/events", 
 # Create a SlackClient for your bot to use for Web API requests
 slack_bot_token = os.environ["SLACK_BOT_TOKEN"]
 slack_client = WebClient(slack_bot_token)
+
+# Example responder to bot mentions
+@slack_events_adapter.on("app_mention")
+def handle_mentions(event_data):
+    event = event_data["event"]
+    slack_client.chat_postMessage(
+        channel=event["channel"],
+        text=f"You said:\n>{event['text']}",
+    )
+
 
 # Example responder to greetings
 @slack_events_adapter.on("message")

@@ -16,13 +16,13 @@ We're using venv (or virtualenv) to keep the dependencies and environmental vari
 
 .. code::
 
-  python -m venv env
+  python -m venv .venv
 
 Then initialize the virtualenv:
 
 .. code::
 
-  source env/bin/activate
+  source .venv/bin/activate
 
 **Install the app's dependencies:**
 

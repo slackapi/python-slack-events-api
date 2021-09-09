@@ -1,5 +1,4 @@
 from setuptools import setup
-import codecs
 import os
 import re
 
@@ -31,11 +30,12 @@ setup(name='slackeventsapi',
       author_email='opensource@slack.com',
       license='MIT',
       packages=['slackeventsapi'],
+      python_requires=">=3.6",
       long_description_content_type='text/x-rst',
       long_description=long_description,
       install_requires=[
-          'flask>=1,<2',
-          'pyee>=7,<8',
+          'flask>=2,<3',
+          'pyee>=8',
       ],
       classifiers=[
           'Development Status :: 5 - Production/Stable',
@@ -45,9 +45,9 @@ setup(name='slackeventsapi',
           'Topic :: Office/Business',
           'License :: OSI Approved :: MIT License',
           'Programming Language :: Python',
-          'Programming Language :: Python :: 3.5',
           'Programming Language :: Python :: 3.6',
           'Programming Language :: Python :: 3.7',
           'Programming Language :: Python :: 3.8',
+          'Programming Language :: Python :: 3.9',
       ],
       zip_safe=False)

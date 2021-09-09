@@ -1,6 +1,22 @@
 Changelog
 ============
 
+v3.0.0 (2021-09-08)
+---------------------
+
+https://github.com/slackapi/python-slack-events-api/milestone/3?closed=1
+
+- Updates for Flask 2.x compatibility - thanks @antonio-te @seratch
+
+Migration guide:
+
+Since this version, this package no longer works with:
+
+- Python 2.7
+- Flask 1.x
+
+Please use Python 3.6 or higher along with Flask 2.x.
+
 v2.2.1 (2020-07-28)
 ---------------------
 

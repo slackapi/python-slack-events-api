@@ -1,12 +1,5 @@
-# ------------------
-# Only for running this script here
-import sys
-from os.path import dirname
-sys.path.insert(1, f"{dirname(__file__)}/../..")
-# ------------------
-
 import os
-from slack import WebClient
+from slack_sdk.web import WebClient
 import logging
 logging.basicConfig(level=logging.DEBUG)
 
