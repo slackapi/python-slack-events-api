@@ -1,5 +1,5 @@
 coveralls<2
-pytest<6 # python 2.7 requires pytest 4
+pytest>=6,<7
 pytest-flask<2
 pytest-mock<2
 pytest-cov<3
