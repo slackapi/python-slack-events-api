@@ -108,7 +108,7 @@ class SlackServer(Flask):
             # Echo the URL verification challenge code back to Slack
             if "challenge" in event_data:
                 return make_response(
-                    {"challenge": event_data.get("challenge")}, 200, 
+                    {"challenge": event_data.get("challenge")}, 200,
                     {"content_type": "application/json"}
                 )
 
