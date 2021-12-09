@@ -53,7 +53,7 @@ def test_url_challenge(client):
         }
     )
     assert res.status_code == 200
-    assert bytes.decode(res.data) == "valid_challenge_token"
+    assert res.json.get("challenge") == "valid_challenge_token"
 
 
 def test_no_request_timestamp_header(client):
