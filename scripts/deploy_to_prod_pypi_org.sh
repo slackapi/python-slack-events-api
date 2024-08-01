@@ -5,7 +5,7 @@ cd ${script_dir}/..
 rm -rf ./slackeventsapi.egg-info
 
 pip install -U pip && \
-  pip install twine wheel && \
+  pip install twine wheel setuptools && \
   rm -rf dist/ build/ slackeventsapi.egg-info/ && \
   python setup.py sdist bdist_wheel && \
   twine check dist/* && \
