@@ -34,7 +34,7 @@ setup(name='slackeventsapi',
       long_description_content_type='text/x-rst',
       long_description=long_description,
       install_requires=[
-          'flask>=2,<3',
+          'flask>=2,<4',
           'pyee>=8',
       ],
       classifiers=[
@@ -50,5 +50,7 @@ setup(name='slackeventsapi',
           'Programming Language :: Python :: 3.8',
           'Programming Language :: Python :: 3.9',
           'Programming Language :: Python :: 3.10',
+          'Programming Language :: Python :: 3.11',
+          'Programming Language :: Python :: 3.12',
       ],
       zip_safe=False)
