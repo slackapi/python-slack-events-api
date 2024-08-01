@@ -1,8 +1,7 @@
-coveralls<2
-pytest>=6,<7
-pytest-flask<2
-pytest-mock<2
-pytest-cov<3
-pytest-pythonpath<0.8
-testfixtures<7
-werkzeug<2
+flask
+werkzeug
+pytest
+pytest-mock
+pytest-cov
+pytest-flask
+testfixtures
