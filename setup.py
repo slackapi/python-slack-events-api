@@ -35,7 +35,7 @@ setup(name='slackeventsapi',
       long_description=long_description,
       install_requires=[
           'flask>=2,<4',
-          'pyee>=8.<12',
+          'pyee>=8,<12',
       ],
       classifiers=[
           'Development Status :: 5 - Production/Stable',
