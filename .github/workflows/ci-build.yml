@@ -10,12 +10,18 @@ on:
 
 jobs:
   build:
-    # Avoiding -latest due to https://github.com/actions/setup-python/issues/162
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     timeout-minutes: 5
     strategy:
       matrix:
-        python-version: ["3.6", "3.7", "3.8", "3.9", "3.10", "3.11", "3.12"]
+        python-version:
+          - "3.13"
+          - "3.12"
+          - "3.11"
+          - "3.10"
+          - "3.9"
+          - "3.8"
+          - "3.7"
     permissions:
       contents: read
     steps:
