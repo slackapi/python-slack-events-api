@@ -1,6 +1,8 @@
 Slack Events API adapter for Python
 ===================================
 
+    **⚠️ This project is archived and is no longer maintained.** Use `Bolt for Python <https://github.com/slackapi/bolt-python>`__ instead. Bolt for Python receives events from the Events API and supports the latest Slack platform features. Read the `Bolt for Python documentation <https://docs.slack.dev/tools/bolt-python/>`__ to get started and the `Listening to events <https://docs.slack.dev/tools/bolt-python/concepts/event-listening>`__ guide to handle events.
+
 .. image:: https://badge.fury.io/py/slackeventsapi.svg
   :target: https://pypi.org/project/slackeventsapi/
 .. image:: https://github.com/slackapi/python-slack-events-api/actions/workflows/ci-build.yml/badge.svg
